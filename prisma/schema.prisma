@@ -1,0 +1,312 @@
+// ======================================================
+// PRISMA CLIENT GENERATOR
+// ======================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// ======================================================
+// DATABASE CONNECTION
+// ======================================================
+
+datasource db {
+  provider = "postgresql"
+  // url removed – connection string now goes into prisma.config.ts
+}
+
+// ======================================================
+// ENUM: Admin Role
+// ======================================================
+
+enum AdminRole {
+  SUPER_ADMIN
+  ADMIN
+  SUPPORT
+}
+
+// ======================================================
+// ENUM: Job Status
+// ======================================================
+
+enum JobStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+// ======================================================
+// ENUM: Notification Channel
+// ======================================================
+
+enum NotificationChannel {
+  WHATSAPP
+  EMAIL
+}
+
+enum SubmissionStatus {
+  PENDING
+  VERIFIED
+  FAILED
+  DUPLICATE
+}
+
+enum FulfillmentType {
+  WHATSAPP
+  EMAIL
+}
+
+enum DeliveryStatus {
+  PENDING
+  SUCCESS
+  FAILED
+}
+
+
+// ======================================================
+// MODEL: Admin Users
+// ------------------------------------------------------
+// Stores internal system administrators.
+// ======================================================
+
+model AdminUser {
+
+  id               String      @id @default(uuid())
+
+  fullName         String
+
+  email            String      @unique
+
+  passwordHash     String
+
+  role             AdminRole   @default(ADMIN)
+
+  isActive         Boolean     @default(true)
+
+  lastLoginAt      DateTime?
+
+  createdAt        DateTime    @default(now())
+
+
+
+  @@map("admin_users")
+}
+
+
+// ======================================================
+// MODEL: Failed Jobs
+// ------------------------------------------------------
+// Stores permanently failed fulfillment jobs.
+// ======================================================
+
+model FailedJob {
+
+  id                    String                @id @default(uuid())
+
+  originalJobId         String
+
+  notificationChannel   NotificationChannel
+
+  failureReason         String
+
+  payloadSnapshot       Json
+
+  retryAttempts         Int                   @default(0)
+
+  failedAt              DateTime              @default(now())
+
+
+
+  @@index([failedAt])
+
+  @@map("failed_jobs")
+}
+
+
+// ======================================================
+// MODEL: System Metrics
+// ------------------------------------------------------
+// Stores historical application metrics.
+// ======================================================
+
+model SystemMetric {
+
+  id                    String   @id @default(uuid())
+
+  totalSubmissions      Int      @default(0)
+
+  successfulVerifications Int    @default(0)
+
+  failedVerifications   Int      @default(0)
+
+  pendingJobs           Int      @default(0)
+
+  completedJobs         Int      @default(0)
+
+  failedJobs            Int      @default(0)
+
+  parserFailures        Int      @default(0)
+
+  createdAt             DateTime @default(now())
+
+
+
+  @@index([createdAt])
+
+  @@map("system_metrics")
+}
+
+
+model XmApprovedAccount {
+  id                 String   @id @default(uuid())
+  accountId          String   @unique
+  emailSubject       String?
+  senderEmail        String?
+  rawEmailExcerpt    String?
+  parsedSuccessfully Boolean  @default(true)
+  fetchedAt          DateTime @default(now())
+
+  submissions UserSubmission[]
+
+  @@map("xm_approved_accounts")
+}
+
+model UserSubmission {
+  id                   String           @id @default(uuid())
+  name                 String
+  surname              String
+  email                String
+  phone                String
+  xmAccountId          String
+  status               SubmissionStatus @default(PENDING)
+  verificationAttempts Int              @default(1)
+  ipAddress            String?
+  campaignId           String?
+  submittedAt          DateTime         @default(now())
+  fulfilledAt          DateTime?
+
+  // ✅ relation attribute on one line
+  xmApprovedAccount XmApprovedAccount @relation(fields: [xmAccountId], references: [accountId])
+
+  fulfillmentLogs FulfillmentLog[]
+
+  // ✅ fixed: one line
+  campaign        Campaign?        @relation(fields: [campaignId], references: [id])
+  fulfillmentJobs FulfillmentJob[]
+
+  @@index([email])
+  @@index([phone])
+  @@index([status])
+  @@map("user_submissions")
+}
+
+model FulfillmentLog {
+  id               String          @id @default(uuid())
+  submissionId     String
+  fulfillmentType  FulfillmentType
+  deliveryStatus   DeliveryStatus  @default(PENDING)
+  providerResponse String?
+  createdAt        DateTime        @default(now())
+
+  // ✅ relation attribute on one line
+  submission UserSubmission @relation(fields: [submissionId], references: [id])
+
+  @@map("fulfillment_logs")
+}
+
+// ======================================================
+// MODEL: Parser Logs
+// ------------------------------------------------------
+// Tracks email parser activity and failures.
+// ======================================================
+model ParserLog {
+  id                 String   @id @default(uuid())
+  emailSubject       String?
+  senderEmail        String?
+  parsingStatus      String?
+  extractedAccountId String?
+  failureReason      String?
+  createdAt          DateTime @default(now())
+
+  @@map("parser_logs")
+}
+
+// ======================================================
+// MODEL: Campaigns
+// ------------------------------------------------------
+// Stores affiliate campaign configuration.
+// ======================================================
+
+model Campaign {
+  id           String   @id @default(uuid())
+  campaignName String   @unique
+  brokerName   String
+  whopLink     String
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+
+  submissions UserSubmission[]
+
+  @@map("campaigns")
+}
+
+// ======================================================
+// MODEL: Fulfillment Jobs
+// ------------------------------------------------------
+// Queue table for notification delivery.
+// ======================================================
+
+model FulfillmentJob {
+  id                  String              @id @default(uuid())
+  submissionId        String // ← added missing scalar field
+  notificationChannel NotificationChannel
+  jobStatus           JobStatus           @default(PENDING)
+  retryCount          Int                 @default(0)
+  lastError           String?
+  scheduledFor        DateTime            @default(now())
+  processedAt         DateTime?
+  createdAt           DateTime            @default(now())
+
+  // ✅ fixed: one line, and now references the new scalar field
+  submission UserSubmission @relation(fields: [submissionId], references: [id])
+
+  @@index([jobStatus])
+  @@index([scheduledFor])
+  @@map("fulfillment_jobs")
+}
+
+// ======================================================
+// MODEL: Notification Templates
+// ------------------------------------------------------
+// Stores reusable notification templates.
+// ======================================================
+
+model NotificationTemplate {
+  id               String              @id @default(uuid())
+  templateName     String              @unique
+  notificationType NotificationChannel
+  subjectLine      String?
+  templateBody     String
+  isActive         Boolean             @default(true)
+  createdAt        DateTime            @default(now())
+
+  @@map("notification_templates")
+}
+
+// ======================================================
+// MODEL: Audit Logs
+// ------------------------------------------------------
+// Stores important system events.
+// ======================================================
+
+model AuditLog {
+  id               String   @id @default(uuid())
+  eventType        String
+  eventDescription String
+  entityId         String?
+  createdAt        DateTime @default(now())
+
+  @@index([eventType])
+  @@map("audit_logs")
+}
