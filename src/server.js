@@ -12,6 +12,10 @@ import { start_gmail_worker } from "./workers/gmail.worker.js";
 
 import { start_fulfillment_worker } from "./workers/fulfillment.worker.js";
 
+import { start_metrics_worker } from "./workers/metrics.worker.js";
+
+import { start_verification_worker } from "./workers/verification.worker.js";
+
 
 
 /**
@@ -27,7 +31,8 @@ const PORT = process.env.PORT || 5000;
 /**
  * start_server()
  * --------------
- * Starts the Express HTTP server.
+ * Starts the Express HTTP server, then registers
+ * all background workers.
  *
  * Parameters:
  * -----------
@@ -35,7 +40,7 @@ const PORT = process.env.PORT || 5000;
  *
  * Returns:
  * --------
- * void
+ * Promise<void>
  */
 
 const start_server = async () => {
@@ -50,9 +55,7 @@ const start_server = async () => {
 
                 logger.info(
 
-                    `server running on port ${PORT}`,
-
-                    `environment: ${process.env.NODE_ENV}`,
+                    `Server running on port ${PORT} — NODE_ENV=${process.env.NODE_ENV}`
 
                 );
 
@@ -60,11 +63,29 @@ const start_server = async () => {
 
         );
 
+
+
+        /**
+         * Workers are started after the HTTP server
+         * is listening so that process crashes during
+         * startup are easier to diagnose.
+         */
+
+        start_gmail_worker();
+
+        start_fulfillment_worker();
+
+        start_metrics_worker();
+
+        start_verification_worker();
+
     }
 
     catch (error) {
 
-        logger.error(error.message);
+        logger.error(`Server failed to start: ${error.message}`);
+
+        process.exit(1);
 
     }
 
@@ -73,17 +94,3 @@ const start_server = async () => {
 
 
 start_server();
-
-/** 
-  
- * Start Gmail parser worker. 
-
- */
-
-start_gmail_worker();
-
-/**
- * Start fulfillment queue worker.
- */
-
-start_fulfillment_worker();

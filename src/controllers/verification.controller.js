@@ -2,9 +2,9 @@ import {
 
     verify_xm_account,
 
-    check_duplicate_submission,
+    check_active_claim,
 
-    create_submission
+    create_pending_submission
 
 } from "../services/verification.service.js";
 
@@ -24,23 +24,40 @@ import {
 
 } from "../utils/phone.js";
 
+
+
 import {
 
-    create_fulfillment_jobs
+    create_audit_log
 
-} from "../services/fullfilment.service.js";
+} from "../services/audit.service.js";
 
 
 
 /**
  * verify_xm_submission()
  * ----------------------
- * Handles XM verification form submission.
+ * Handles XM verification form submissions.
+ *
+ * Three distinct outcomes:
+ *
+ *   1. Account already has a PENDING or VERIFIED submission
+ *      → 409  "XM account already submitted or verified."
+ *
+ *   2. Account ID not found in XmApprovedAccount
+ *      → 404  { type: "ACCOUNT_NOT_FOUND", instructions, affiliateLink }
+ *             The public webapp uses this to show a toast with
+ *             instructions on how to sign up through the
+ *             affiliate link to qualify for the discount.
+ *
+ *   3. Account found in approved list
+ *      → 202  Pending submission created. The verification
+ *             cron worker will confirm and trigger fulfillment
+ *             (email + WhatsApp) within the next minute.
  *
  * Parameters:
  * -----------
- * request : Express Request Object
- *
+ * request  : Express Request Object
  * response : Express Response Object
  *
  * Returns:
@@ -58,7 +75,7 @@ export const verify_xm_submission = async (
     try {
 
         /**
-         * Validate request body.
+         * Validate and parse request body.
          */
 
         const validated_data =
@@ -72,7 +89,7 @@ export const verify_xm_submission = async (
 
 
         /**
-         * Normalize phone number.
+         * Normalize phone to E.164 format.
          */
 
         const formatted_phone =
@@ -86,10 +103,43 @@ export const verify_xm_submission = async (
 
 
         /**
-         * Check XM account existence.
+         * Block if an active claim (PENDING or VERIFIED)
+         * already exists for this account ID.
          */
 
-        const xm_exists =
+        const is_active_claim =
+
+            await check_active_claim(
+
+                validated_data.xm_account_id
+
+            );
+
+
+
+        if (is_active_claim) {
+
+            return response.status(409).json({
+
+                success: false,
+
+                message: "XM account already submitted or verified."
+
+            });
+
+        }
+
+
+
+        /**
+         * Check whether the account exists in the approved list.
+         * Accounts arrive via the Gmail IMAP worker — if the
+         * affiliate email has not been processed yet, this check
+         * will return false. Users who have not signed up through
+         * the correct affiliate link will always fail here.
+         */
+
+        const account_exists =
 
             await verify_xm_account(
 
@@ -99,17 +149,21 @@ export const verify_xm_submission = async (
 
 
 
-        /**
-         * Reject invalid XM accounts.
-         */
-
-        if (!xm_exists) {
+        if (!account_exists) {
 
             return response.status(404).json({
 
                 success: false,
 
-                message: "XM account not found."
+                type: "ACCOUNT_NOT_FOUND",
+
+                message: "We don't have your XM account on file.",
+
+                instructions:
+                    "To qualify for the discount, you must open your XM account through our affiliate link. " +
+                    "Sign up using the link below, then return here once your account is active.",
+
+                affiliateLink: process.env.AFFILIATE_LINK
 
             });
 
@@ -118,66 +172,39 @@ export const verify_xm_submission = async (
 
 
         /**
-         * Prevent duplicate claims.
-         */
-
-        const is_duplicate =
-
-            await check_duplicate_submission(
-
-                validated_data.xm_account_id
-
-            );
-
-
-
-        if (is_duplicate) {
-
-            return response.status(409).json({
-
-                success: false,
-
-                message: "XM account already claimed."
-
-            });
-
-        }
-
-
-
-        /**
-         * Create verified submission.
+         * Account exists. Create a PENDING submission.
+         * The verification cron worker will match this against
+         * XmApprovedAccount and trigger fulfillment jobs within
+         * the next polling cycle (≤ 1 minute).
          */
 
         const submission =
 
-            await create_submission({
+            await create_pending_submission({
 
-                name: validated_data.name,
+                name:              validated_data.name,
 
-                surname: validated_data.surname,
+                surname:           validated_data.surname,
 
-                email: validated_data.email,
+                email:             validated_data.email,
 
-                phone: formatted_phone,
+                phone:             formatted_phone,
 
-                xmAccountId:
+                submittedAccountId: validated_data.xm_account_id,
 
-                    validated_data.xm_account_id,
+                ipAddress:         request.ip,
 
-                status: "VERIFIED",
-
-                ipAddress: request.ip,
-
-                fulfilledAt: new Date()
+                campaignId:        validated_data.campaign_id ?? null
 
             });
 
-        /**
-         * Create fulfillment jobs.
-         */
 
-        await create_fulfillment_jobs(
+
+        await create_audit_log(
+
+            "SUBMISSION_CREATED",
+
+            `Pending submission created for account ${validated_data.xm_account_id}.`,
 
             submission.id
 
@@ -185,15 +212,15 @@ export const verify_xm_submission = async (
 
 
 
-
-
-        return response.status(200).json({
+        return response.status(202).json({
 
             success: true,
 
-            message: "XM account verified.",
+            message:
+                "Your account has been submitted for verification. " +
+                "You will receive an email and WhatsApp message once confirmed.",
 
-            submission
+            submissionId: submission.id
 
         });
 

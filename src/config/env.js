@@ -16,9 +16,11 @@ const required_environment_variables = [
 
     "JWT_SECRET",
 
-    //    "WHATSAPP_ACCESS_TOKEN",
+    //  "WHATSAPP_ACCESS_TOKEN",
 
-    //    "WHATSAPP_PHONE_NUMBER_ID",
+    //  "WHATSAPP_PHONE_NUMBER_ID",
+
+    //  "WHATSAPP_TEMPLATE_NAME",
 
     "RESEND_API_KEY",
 
@@ -30,7 +32,9 @@ const required_environment_variables = [
 
     "IMAP_USER",
 
-    "IMAP_PASS"
+    "IMAP_PASS",
+
+    //  "AFFILIATE_LINK"
 
 ];
 

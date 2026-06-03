@@ -28,6 +28,10 @@ export const verify_xm_schema = z.object({
 
     xm_account_id: z
         .string()
-        .min(5)
+        .min(5),
+
+    campaign_id: z
+        .uuid()
+        .optional()
 
 });

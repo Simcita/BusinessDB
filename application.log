@@ -378,3 +378,1223 @@
 [2026-06-01T13:39:38.795Z] INFO: Connected to IMAP server.
 [2026-06-01T13:39:40.211Z] INFO: Found 0 unread emails.
 [2026-06-01T13:39:40.805Z] INFO: IMAP session closed.
+[2026-06-02T18:50:38.368Z] INFO: Starting Gmail worker.
+[2026-06-02T18:50:38.515Z] INFO: Starting fulfillment worker.
+[2026-06-02T18:50:38.681Z] INFO: server running on port 5000
+[2026-06-02T18:50:42.578Z] INFO: Connected to IMAP server.
+[2026-06-02T18:50:44.227Z] INFO: Found 1 unread emails.
+[2026-06-02T18:50:48.423Z] INFO: XM account saved: 381787514
+[2026-06-02T18:50:48.622Z] INFO: Processed XM account: 381787514
+[2026-06-02T18:50:49.451Z] INFO: IMAP session closed.
+[2026-06-02T18:51:01.204Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T18:51:42.382Z] INFO: Connected to IMAP server.
+[2026-06-02T18:51:44.083Z] INFO: Found 0 unread emails.
+[2026-06-02T18:51:44.534Z] INFO: IMAP session closed.
+[2026-06-02T18:52:01.315Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T18:52:36.317Z] INFO: Starting Gmail worker.
+[2026-06-02T18:52:36.385Z] INFO: Starting fulfillment worker.
+[2026-06-02T18:52:36.428Z] INFO: server running on port 5000
+[2026-06-02T18:52:40.444Z] INFO: Connected to IMAP server.
+[2026-06-02T18:52:42.185Z] INFO: Found 0 unread emails.
+[2026-06-02T18:52:42.597Z] INFO: IMAP session closed.
+[2026-06-02T18:53:01.940Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T18:53:40.354Z] INFO: Connected to IMAP server.
+[2026-06-02T18:53:42.070Z] INFO: Found 0 unread emails.
+[2026-06-02T18:53:42.481Z] INFO: IMAP session closed.
+[2026-06-02T18:54:01.218Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T18:54:40.178Z] INFO: Connected to IMAP server.
+[2026-06-02T18:54:41.899Z] INFO: Found 0 unread emails.
+[2026-06-02T18:54:42.501Z] INFO: IMAP session closed.
+[2026-06-02T18:55:01.434Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T18:55:40.496Z] INFO: Connected to IMAP server.
+[2026-06-02T18:55:42.151Z] INFO: Found 0 unread emails.
+[2026-06-02T18:55:42.560Z] INFO: IMAP session closed.
+[2026-06-02T18:56:01.336Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T18:56:40.294Z] INFO: Connected to IMAP server.
+[2026-06-02T18:56:42.027Z] INFO: Found 0 unread emails.
+[2026-06-02T18:56:42.436Z] INFO: IMAP session closed.
+[2026-06-02T18:57:01.261Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T18:57:40.378Z] INFO: Connected to IMAP server.
+[2026-06-02T18:57:42.213Z] INFO: Found 0 unread emails.
+[2026-06-02T18:57:42.811Z] INFO: IMAP session closed.
+[2026-06-02T18:58:01.362Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T18:58:40.510Z] INFO: Connected to IMAP server.
+[2026-06-02T18:58:42.238Z] INFO: Found 0 unread emails.
+[2026-06-02T18:58:42.645Z] INFO: IMAP session closed.
+[2026-06-02T18:59:01.299Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T18:59:40.610Z] INFO: Connected to IMAP server.
+[2026-06-02T18:59:42.540Z] INFO: Found 0 unread emails.
+[2026-06-02T18:59:42.946Z] INFO: IMAP session closed.
+[2026-06-02T19:00:01.282Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T19:00:40.429Z] INFO: Connected to IMAP server.
+[2026-06-02T19:00:42.133Z] INFO: Found 0 unread emails.
+[2026-06-02T19:00:42.539Z] INFO: IMAP session closed.
+[2026-06-02T19:01:01.158Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T19:01:40.113Z] INFO: Connected to IMAP server.
+[2026-06-02T19:01:41.763Z] INFO: Found 0 unread emails.
+[2026-06-02T19:01:42.169Z] INFO: IMAP session closed.
+[2026-06-02T19:02:01.139Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T19:02:40.160Z] INFO: Connected to IMAP server.
+[2026-06-02T19:02:41.801Z] INFO: Found 0 unread emails.
+[2026-06-02T19:02:42.209Z] INFO: IMAP session closed.
+[2026-06-02T19:03:01.169Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T19:03:40.291Z] INFO: Connected to IMAP server.
+[2026-06-02T19:03:41.916Z] INFO: Found 0 unread emails.
+[2026-06-02T19:03:42.325Z] INFO: IMAP session closed.
+[2026-06-02T19:04:01.138Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T19:04:40.187Z] INFO: Connected to IMAP server.
+[2026-06-02T19:04:41.814Z] INFO: Found 0 unread emails.
+[2026-06-02T19:04:42.219Z] INFO: IMAP session closed.
+[2026-06-02T19:05:01.157Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T19:05:40.222Z] INFO: Connected to IMAP server.
+[2026-06-02T19:05:41.865Z] INFO: Found 0 unread emails.
+[2026-06-02T19:05:42.271Z] INFO: IMAP session closed.
+[2026-06-02T19:06:01.198Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T19:06:40.197Z] INFO: Connected to IMAP server.
+[2026-06-02T19:06:41.828Z] INFO: Found 0 unread emails.
+[2026-06-02T19:06:42.232Z] INFO: IMAP session closed.
+[2026-06-02T19:07:01.115Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T19:07:40.188Z] INFO: Connected to IMAP server.
+[2026-06-02T19:07:41.816Z] INFO: Found 0 unread emails.
+[2026-06-02T19:07:42.226Z] INFO: IMAP session closed.
+[2026-06-02T19:08:01.118Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T19:08:40.373Z] INFO: Connected to IMAP server.
+[2026-06-02T19:08:42.012Z] INFO: Found 0 unread emails.
+[2026-06-02T19:08:42.505Z] INFO: IMAP session closed.
+[2026-06-02T19:09:01.100Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T19:09:40.169Z] INFO: Connected to IMAP server.
+[2026-06-02T19:09:41.793Z] INFO: Found 0 unread emails.
+[2026-06-02T19:09:42.199Z] INFO: IMAP session closed.
+[2026-06-02T19:10:01.142Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T19:10:40.239Z] INFO: Connected to IMAP server.
+[2026-06-02T19:10:41.859Z] INFO: Found 0 unread emails.
+[2026-06-02T19:10:42.262Z] INFO: IMAP session closed.
+[2026-06-02T19:11:01.098Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T19:11:40.247Z] INFO: Connected to IMAP server.
+[2026-06-02T19:11:41.874Z] INFO: Found 0 unread emails.
+[2026-06-02T19:11:42.279Z] INFO: IMAP session closed.
+[2026-06-02T19:12:01.254Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T19:12:40.260Z] INFO: Connected to IMAP server.
+[2026-06-02T19:12:41.881Z] INFO: Found 0 unread emails.
+[2026-06-02T19:12:42.284Z] INFO: IMAP session closed.
+[2026-06-02T19:13:01.176Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T19:13:40.205Z] INFO: Connected to IMAP server.
+[2026-06-02T19:13:41.824Z] INFO: Found 0 unread emails.
+[2026-06-02T19:13:42.225Z] INFO: IMAP session closed.
+[2026-06-02T19:14:01.088Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T19:14:40.276Z] INFO: Connected to IMAP server.
+[2026-06-02T19:14:41.928Z] INFO: Found 0 unread emails.
+[2026-06-02T19:14:42.341Z] INFO: IMAP session closed.
+[2026-06-02T19:15:01.170Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T19:15:40.301Z] INFO: Connected to IMAP server.
+[2026-06-02T19:15:41.952Z] INFO: Found 0 unread emails.
+[2026-06-02T19:15:42.362Z] INFO: IMAP session closed.
+[2026-06-02T19:16:01.254Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T19:16:40.321Z] INFO: Connected to IMAP server.
+[2026-06-02T19:16:41.998Z] INFO: Found 0 unread emails.
+[2026-06-02T19:16:42.410Z] INFO: IMAP session closed.
+[2026-06-02T19:17:01.148Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T19:17:40.332Z] INFO: Connected to IMAP server.
+[2026-06-02T19:17:42.069Z] INFO: Found 0 unread emails.
+[2026-06-02T19:17:42.510Z] INFO: IMAP session closed.
+[2026-06-02T19:18:01.199Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T19:18:40.323Z] INFO: Connected to IMAP server.
+[2026-06-02T19:18:41.967Z] INFO: Found 0 unread emails.
+[2026-06-02T19:18:42.390Z] INFO: IMAP session closed.
+[2026-06-02T19:19:01.210Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T19:19:40.378Z] INFO: Connected to IMAP server.
+[2026-06-02T19:19:42.073Z] INFO: Found 0 unread emails.
+[2026-06-02T19:19:42.485Z] INFO: IMAP session closed.
+[2026-06-02T19:20:01.155Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T19:20:38.627Z] INFO: Starting Gmail worker.
+[2026-06-02T19:20:38.688Z] INFO: Starting fulfillment worker.
+[2026-06-02T19:20:38.734Z] INFO: server running on port 5000
+[2026-06-02T19:20:42.476Z] INFO: Connected to IMAP server.
+[2026-06-02T19:20:44.145Z] INFO: Found 8 unread emails.
+[2026-06-02T19:20:46.204Z] INFO: Duplicate XM account skipped: 92432665
+[2026-06-02T19:20:46.397Z] INFO: Processed XM account: 92432665
+[2026-06-02T19:20:47.856Z] INFO: Duplicate XM account skipped: 335320929
+[2026-06-02T19:20:48.045Z] INFO: Processed XM account: 335320929
+[2026-06-02T19:20:48.924Z] WARN: Failed to extract XM account ID.
+[2026-06-02T19:21:01.164Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T19:21:03.071Z] WARN: Failed to extract XM account ID.
+[2026-06-02T19:21:04.556Z] INFO: XM account saved: 317378922
+[2026-06-02T19:21:04.733Z] INFO: Processed XM account: 317378922
+[2026-06-02T19:21:05.978Z] INFO: XM account saved: 401274499
+[2026-06-02T19:21:06.154Z] INFO: Processed XM account: 401274499
+[2026-06-02T19:21:07.360Z] INFO: XM account saved: 168819616
+[2026-06-02T19:21:07.536Z] INFO: Processed XM account: 168819616
+[2026-06-02T19:21:08.585Z] INFO: Duplicate XM account skipped: 381787514
+[2026-06-02T19:21:08.761Z] INFO: Processed XM account: 381787514
+[2026-06-02T19:21:09.591Z] INFO: IMAP session closed.
+[2026-06-02T19:21:42.456Z] INFO: Connected to IMAP server.
+[2026-06-02T19:21:44.110Z] INFO: Found 0 unread emails.
+[2026-06-02T19:21:44.521Z] INFO: IMAP session closed.
+[2026-06-02T19:22:01.241Z] INFO: Processing 0 fulfillment jobs.
+[2026-06-02T19:22:42.548Z] INFO: Connected to IMAP server.
+[2026-06-02T19:22:44.206Z] INFO: Found 0 unread emails.
+[2026-06-02T19:22:44.622Z] INFO: IMAP session closed.
+[2026-06-02T19:40:59.979Z] INFO: Starting Gmail worker.
+[2026-06-02T19:41:00.087Z] INFO: Starting fulfillment worker.
+[2026-06-02T19:41:00.091Z] INFO: Starting metrics worker.
+[2026-06-02T19:41:00.094Z] INFO: Server running on port 5000 — NODE_ENV=development
+[2026-06-02T19:41:03.784Z] INFO: Connected to IMAP server.
+[2026-06-02T19:41:05.426Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T19:41:05.834Z] INFO: IMAP session closed.
+[2026-06-02T19:42:04.191Z] INFO: Connected to IMAP server.
+[2026-06-02T19:42:05.828Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T19:42:06.239Z] INFO: IMAP session closed.
+[2026-06-02T19:43:03.701Z] INFO: Connected to IMAP server.
+[2026-06-02T19:43:05.331Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T19:43:05.737Z] INFO: IMAP session closed.
+[2026-06-02T19:44:03.692Z] INFO: Connected to IMAP server.
+[2026-06-02T19:44:05.326Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T19:44:05.731Z] INFO: IMAP session closed.
+[2026-06-02T19:45:01.252Z] INFO: Metrics snapshot captured: 2c733524-439a-41e4-b60a-a3ae2c9555f4 | submissions=0 pending_jobs=0
+[2026-06-02T19:45:03.749Z] INFO: Connected to IMAP server.
+[2026-06-02T19:45:05.380Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T19:45:05.785Z] INFO: IMAP session closed.
+[2026-06-02T19:46:03.710Z] INFO: Connected to IMAP server.
+[2026-06-02T19:46:05.346Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T19:46:05.754Z] INFO: IMAP session closed.
+[2026-06-02T19:47:03.698Z] INFO: Connected to IMAP server.
+[2026-06-02T19:47:05.333Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T19:47:05.740Z] INFO: IMAP session closed.
+[2026-06-02T19:48:03.722Z] INFO: Connected to IMAP server.
+[2026-06-02T19:48:05.469Z] INFO: Starting Gmail worker.
+[2026-06-02T19:48:05.553Z] INFO: Starting fulfillment worker.
+[2026-06-02T19:48:05.558Z] INFO: Starting metrics worker.
+[2026-06-02T19:48:05.562Z] INFO: Server running on port 5000 — NODE_ENV=development
+[2026-06-02T19:48:09.282Z] INFO: Connected to IMAP server.
+[2026-06-02T19:48:10.925Z] INFO: Found 8 unprocessed emails.
+[2026-06-02T19:48:11.752Z] ERROR: input.once is not a function
+[2026-06-02T19:48:12.975Z] ERROR: input.once is not a function
+[2026-06-02T19:48:13.806Z] ERROR: input.once is not a function
+[2026-06-02T19:48:15.030Z] ERROR: input.once is not a function
+[2026-06-02T19:48:16.780Z] ERROR: input.once is not a function
+[2026-06-02T19:48:17.704Z] ERROR: input.once is not a function
+[2026-06-02T19:48:18.672Z] ERROR: input.once is not a function
+[2026-06-02T19:48:19.562Z] ERROR: input.once is not a function
+[2026-06-02T19:48:20.377Z] INFO: IMAP session closed.
+[2026-06-02T19:49:03.892Z] INFO: Connected to IMAP server.
+[2026-06-02T19:49:05.542Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T19:49:05.999Z] INFO: IMAP session closed.
+[2026-06-02T19:50:03.745Z] INFO: Connected to IMAP server.
+[2026-06-02T19:50:05.378Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T19:50:05.784Z] INFO: IMAP session closed.
+[2026-06-02T19:51:03.699Z] INFO: Connected to IMAP server.
+[2026-06-02T19:51:05.330Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T19:51:05.760Z] INFO: IMAP session closed.
+[2026-06-02T19:52:03.714Z] INFO: Connected to IMAP server.
+[2026-06-02T19:52:05.352Z] INFO: Found 1 unprocessed emails.
+[2026-06-02T19:52:06.187Z] ERROR: input.once is not a function
+[2026-06-02T19:52:07.002Z] INFO: IMAP session closed.
+[2026-06-02T19:53:03.739Z] INFO: Connected to IMAP server.
+[2026-06-02T19:53:05.380Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T19:53:05.784Z] INFO: IMAP session closed.
+[2026-06-02T19:54:03.743Z] INFO: Connected to IMAP server.
+[2026-06-02T19:54:05.373Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T19:54:05.779Z] INFO: IMAP session closed.
+[2026-06-02T19:55:04.195Z] INFO: Connected to IMAP server.
+[2026-06-02T19:55:05.838Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T19:55:06.247Z] INFO: IMAP session closed.
+[2026-06-02T19:56:03.755Z] INFO: Connected to IMAP server.
+[2026-06-02T19:56:05.385Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T19:56:05.795Z] INFO: IMAP session closed.
+[2026-06-02T19:57:03.741Z] INFO: Connected to IMAP server.
+[2026-06-02T19:57:05.366Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T19:57:05.773Z] INFO: IMAP session closed.
+[2026-06-02T19:58:03.739Z] INFO: Connected to IMAP server.
+[2026-06-02T19:58:05.368Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T19:58:05.774Z] INFO: IMAP session closed.
+[2026-06-02T19:59:03.776Z] INFO: Connected to IMAP server.
+[2026-06-02T19:59:05.411Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T19:59:05.818Z] INFO: IMAP session closed.
+[2026-06-02T20:00:01.279Z] INFO: Metrics snapshot captured: 5d4fd93f-e4c8-424c-a6ba-7695cc542356 | submissions=0 pending_jobs=0
+[2026-06-02T20:00:03.789Z] INFO: Connected to IMAP server.
+[2026-06-02T20:00:05.431Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:00:05.839Z] INFO: IMAP session closed.
+[2026-06-02T20:01:03.737Z] INFO: Connected to IMAP server.
+[2026-06-02T20:01:05.370Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:01:05.777Z] INFO: IMAP session closed.
+[2026-06-02T20:02:03.751Z] INFO: Connected to IMAP server.
+[2026-06-02T20:02:05.389Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:02:05.798Z] INFO: IMAP session closed.
+[2026-06-02T20:03:03.724Z] INFO: Connected to IMAP server.
+[2026-06-02T20:03:05.345Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:03:05.751Z] INFO: IMAP session closed.
+[2026-06-02T20:04:03.721Z] INFO: Connected to IMAP server.
+[2026-06-02T20:04:05.353Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:04:05.759Z] INFO: IMAP session closed.
+[2026-06-02T20:05:03.737Z] INFO: Connected to IMAP server.
+[2026-06-02T20:05:05.369Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:05:05.775Z] INFO: IMAP session closed.
+[2026-06-02T20:06:03.743Z] INFO: Connected to IMAP server.
+[2026-06-02T20:06:05.376Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:06:05.781Z] INFO: IMAP session closed.
+[2026-06-02T20:07:03.782Z] INFO: Connected to IMAP server.
+[2026-06-02T20:07:05.415Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:07:05.822Z] INFO: IMAP session closed.
+[2026-06-02T20:08:03.742Z] INFO: Connected to IMAP server.
+[2026-06-02T20:08:05.418Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:08:05.824Z] INFO: IMAP session closed.
+[2026-06-02T20:09:03.728Z] INFO: Connected to IMAP server.
+[2026-06-02T20:09:05.371Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:09:05.776Z] INFO: IMAP session closed.
+[2026-06-02T20:10:03.731Z] INFO: Connected to IMAP server.
+[2026-06-02T20:10:05.360Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:10:05.765Z] INFO: IMAP session closed.
+[2026-06-02T20:11:03.733Z] INFO: Connected to IMAP server.
+[2026-06-02T20:11:05.351Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:11:05.754Z] INFO: IMAP session closed.
+[2026-06-02T20:12:03.743Z] INFO: Connected to IMAP server.
+[2026-06-02T20:12:05.385Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:12:05.792Z] INFO: IMAP session closed.
+[2026-06-02T20:13:03.717Z] INFO: Connected to IMAP server.
+[2026-06-02T20:13:05.352Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:13:05.759Z] INFO: IMAP session closed.
+[2026-06-02T20:14:03.738Z] INFO: Connected to IMAP server.
+[2026-06-02T20:14:05.376Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:14:05.784Z] INFO: IMAP session closed.
+[2026-06-02T20:15:01.188Z] INFO: Metrics snapshot captured: 25139a9c-4e79-4657-a853-24cd5b6bd4fe | submissions=0 pending_jobs=0
+[2026-06-02T20:15:03.736Z] INFO: Connected to IMAP server.
+[2026-06-02T20:15:05.373Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:15:05.781Z] INFO: IMAP session closed.
+[2026-06-02T20:16:03.739Z] INFO: Connected to IMAP server.
+[2026-06-02T20:16:05.390Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:16:05.798Z] INFO: IMAP session closed.
+[2026-06-02T20:17:03.746Z] INFO: Connected to IMAP server.
+[2026-06-02T20:17:05.382Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:17:05.790Z] INFO: IMAP session closed.
+[2026-06-02T20:18:03.747Z] INFO: Connected to IMAP server.
+[2026-06-02T20:18:05.385Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:18:05.793Z] INFO: IMAP session closed.
+[2026-06-02T20:19:03.754Z] INFO: Connected to IMAP server.
+[2026-06-02T20:19:05.439Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:19:05.852Z] INFO: IMAP session closed.
+[2026-06-02T20:20:03.809Z] INFO: Connected to IMAP server.
+[2026-06-02T20:20:05.476Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:20:05.889Z] INFO: IMAP session closed.
+[2026-06-02T20:21:03.814Z] INFO: Connected to IMAP server.
+[2026-06-02T20:21:05.474Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:21:05.887Z] INFO: IMAP session closed.
+[2026-06-02T20:22:03.787Z] INFO: Connected to IMAP server.
+[2026-06-02T20:22:05.440Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:22:05.854Z] INFO: IMAP session closed.
+[2026-06-02T20:23:03.815Z] INFO: Connected to IMAP server.
+[2026-06-02T20:23:05.491Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:23:05.936Z] INFO: IMAP session closed.
+[2026-06-02T20:24:03.822Z] INFO: Connected to IMAP server.
+[2026-06-02T20:24:05.468Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:24:05.878Z] INFO: IMAP session closed.
+[2026-06-02T20:25:03.780Z] INFO: Connected to IMAP server.
+[2026-06-02T20:25:05.420Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:25:05.827Z] INFO: IMAP session closed.
+[2026-06-02T20:26:03.782Z] INFO: Connected to IMAP server.
+[2026-06-02T20:26:05.427Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:26:05.837Z] INFO: IMAP session closed.
+[2026-06-02T20:27:03.746Z] INFO: Connected to IMAP server.
+[2026-06-02T20:27:05.385Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:27:05.794Z] INFO: IMAP session closed.
+[2026-06-02T20:28:03.761Z] INFO: Connected to IMAP server.
+[2026-06-02T20:28:05.410Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:28:05.818Z] INFO: IMAP session closed.
+[2026-06-02T20:29:03.834Z] INFO: Connected to IMAP server.
+[2026-06-02T20:29:05.501Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:29:05.915Z] INFO: IMAP session closed.
+[2026-06-02T20:30:01.217Z] INFO: Metrics snapshot captured: 9c06bde3-a7fc-4841-aa3e-09fc094cdd93 | submissions=0 pending_jobs=0
+[2026-06-02T20:30:03.848Z] INFO: Connected to IMAP server.
+[2026-06-02T20:30:05.516Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:30:05.930Z] INFO: IMAP session closed.
+[2026-06-02T20:31:03.802Z] INFO: Connected to IMAP server.
+[2026-06-02T20:31:05.470Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:31:05.883Z] INFO: IMAP session closed.
+[2026-06-02T20:32:03.805Z] INFO: Connected to IMAP server.
+[2026-06-02T20:32:05.467Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:32:05.882Z] INFO: IMAP session closed.
+[2026-06-02T20:33:03.840Z] INFO: Connected to IMAP server.
+[2026-06-02T20:33:05.504Z] INFO: Found 2 unprocessed emails.
+[2026-06-02T20:33:06.760Z] ERROR: input.once is not a function
+[2026-06-02T20:33:08.008Z] ERROR: input.once is not a function
+[2026-06-02T20:33:08.843Z] INFO: IMAP session closed.
+[2026-06-02T20:34:03.759Z] INFO: Connected to IMAP server.
+[2026-06-02T20:34:05.395Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:34:05.803Z] INFO: IMAP session closed.
+[2026-06-02T20:35:03.717Z] INFO: Connected to IMAP server.
+[2026-06-02T20:35:05.345Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:35:05.747Z] INFO: IMAP session closed.
+[2026-06-02T20:36:03.714Z] INFO: Connected to IMAP server.
+[2026-06-02T20:36:05.333Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:36:05.736Z] INFO: IMAP session closed.
+[2026-06-02T20:37:03.702Z] INFO: Connected to IMAP server.
+[2026-06-02T20:37:05.312Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:37:05.715Z] INFO: IMAP session closed.
+[2026-06-02T20:38:03.700Z] INFO: Connected to IMAP server.
+[2026-06-02T20:38:05.317Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:38:05.719Z] INFO: IMAP session closed.
+[2026-06-02T20:39:03.741Z] INFO: Connected to IMAP server.
+[2026-06-02T20:39:05.361Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:39:05.764Z] INFO: IMAP session closed.
+[2026-06-02T20:40:03.670Z] INFO: Connected to IMAP server.
+[2026-06-02T20:40:05.282Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:40:05.694Z] INFO: IMAP session closed.
+[2026-06-02T20:41:03.726Z] INFO: Connected to IMAP server.
+[2026-06-02T20:41:05.383Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:41:05.795Z] INFO: IMAP session closed.
+[2026-06-02T20:42:03.683Z] INFO: Connected to IMAP server.
+[2026-06-02T20:42:05.335Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:42:05.737Z] INFO: IMAP session closed.
+[2026-06-02T20:43:03.668Z] INFO: Connected to IMAP server.
+[2026-06-02T20:43:05.283Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:43:05.684Z] INFO: IMAP session closed.
+[2026-06-02T20:44:03.720Z] INFO: Connected to IMAP server.
+[2026-06-02T20:44:05.335Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:44:05.739Z] INFO: IMAP session closed.
+[2026-06-02T20:45:01.221Z] INFO: Metrics snapshot captured: b29cdeba-e6aa-432f-a6fb-1fbd8b7ac25c | submissions=0 pending_jobs=0
+[2026-06-02T20:45:03.707Z] INFO: Connected to IMAP server.
+[2026-06-02T20:45:05.327Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:45:05.735Z] INFO: IMAP session closed.
+[2026-06-02T20:46:03.711Z] INFO: Connected to IMAP server.
+[2026-06-02T20:46:05.361Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:46:05.766Z] INFO: IMAP session closed.
+[2026-06-02T20:46:19.653Z] INFO: Starting Gmail worker.
+[2026-06-02T20:46:19.744Z] INFO: Starting fulfillment worker.
+[2026-06-02T20:46:19.747Z] INFO: Starting metrics worker.
+[2026-06-02T20:46:19.754Z] INFO: Server running on port 5000 — NODE_ENV=development
+[2026-06-02T20:46:23.453Z] INFO: Connected to IMAP server.
+[2026-06-02T20:46:25.095Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:46:27.211Z] INFO: Starting Gmail worker.
+[2026-06-02T20:46:27.302Z] INFO: Starting fulfillment worker.
+[2026-06-02T20:46:27.306Z] INFO: Starting metrics worker.
+[2026-06-02T20:46:27.320Z] INFO: Server running on port 5000 — NODE_ENV=development
+[2026-06-02T20:46:30.992Z] INFO: Connected to IMAP server.
+[2026-06-02T20:46:32.620Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:46:33.027Z] INFO: IMAP session closed.
+[2026-06-02T20:47:03.925Z] INFO: Connected to IMAP server.
+[2026-06-02T20:47:05.552Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:47:05.960Z] INFO: IMAP session closed.
+[2026-06-02T20:48:03.713Z] INFO: Connected to IMAP server.
+[2026-06-02T20:48:05.333Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:48:05.736Z] INFO: IMAP session closed.
+[2026-06-02T20:49:03.693Z] INFO: Connected to IMAP server.
+[2026-06-02T20:49:05.323Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:49:05.732Z] INFO: IMAP session closed.
+[2026-06-02T20:50:03.805Z] INFO: Connected to IMAP server.
+[2026-06-02T20:50:05.454Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:50:05.865Z] INFO: IMAP session closed.
+[2026-06-02T20:51:03.828Z] INFO: Connected to IMAP server.
+[2026-06-02T20:51:05.477Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:51:05.886Z] INFO: IMAP session closed.
+[2026-06-02T20:52:03.733Z] INFO: Connected to IMAP server.
+[2026-06-02T20:52:05.365Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:52:05.773Z] INFO: IMAP session closed.
+[2026-06-02T20:53:03.797Z] INFO: Connected to IMAP server.
+[2026-06-02T20:53:05.442Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:53:05.852Z] INFO: IMAP session closed.
+[2026-06-02T20:54:03.803Z] INFO: Connected to IMAP server.
+[2026-06-02T20:54:05.522Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:54:05.934Z] INFO: IMAP session closed.
+[2026-06-02T20:55:03.791Z] INFO: Connected to IMAP server.
+[2026-06-02T20:55:05.435Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:55:05.846Z] INFO: IMAP session closed.
+[2026-06-02T20:56:03.771Z] INFO: Connected to IMAP server.
+[2026-06-02T20:56:05.414Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:56:05.823Z] INFO: IMAP session closed.
+[2026-06-02T20:57:03.795Z] INFO: Connected to IMAP server.
+[2026-06-02T20:57:05.444Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:57:05.855Z] INFO: IMAP session closed.
+[2026-06-02T20:58:03.804Z] INFO: Connected to IMAP server.
+[2026-06-02T20:58:05.448Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:58:05.859Z] INFO: IMAP session closed.
+[2026-06-02T20:59:03.778Z] INFO: Connected to IMAP server.
+[2026-06-02T20:59:05.418Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T20:59:05.827Z] INFO: IMAP session closed.
+[2026-06-02T21:00:01.333Z] INFO: Metrics snapshot captured: 80943145-7d0f-4cb1-bfa6-717530067d03 | submissions=0 pending_jobs=0
+[2026-06-02T21:00:03.886Z] INFO: Connected to IMAP server.
+[2026-06-02T21:00:05.557Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:00:05.967Z] INFO: IMAP session closed.
+[2026-06-02T21:01:03.895Z] INFO: Connected to IMAP server.
+[2026-06-02T21:01:05.537Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:01:05.953Z] INFO: IMAP session closed.
+[2026-06-02T21:02:03.779Z] INFO: Connected to IMAP server.
+[2026-06-02T21:02:05.421Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:02:05.831Z] INFO: IMAP session closed.
+[2026-06-02T21:03:03.766Z] INFO: Connected to IMAP server.
+[2026-06-02T21:03:05.414Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:03:05.824Z] INFO: IMAP session closed.
+[2026-06-02T21:04:03.809Z] INFO: Connected to IMAP server.
+[2026-06-02T21:04:05.813Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:04:06.229Z] INFO: IMAP session closed.
+[2026-06-02T21:05:03.759Z] INFO: Connected to IMAP server.
+[2026-06-02T21:05:05.409Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:05:05.817Z] INFO: IMAP session closed.
+[2026-06-02T21:06:03.903Z] INFO: Connected to IMAP server.
+[2026-06-02T21:06:05.551Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:06:05.961Z] INFO: IMAP session closed.
+[2026-06-02T21:07:03.840Z] INFO: Connected to IMAP server.
+[2026-06-02T21:07:05.502Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:07:05.913Z] INFO: IMAP session closed.
+[2026-06-02T21:08:03.813Z] INFO: Connected to IMAP server.
+[2026-06-02T21:08:05.481Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:08:05.924Z] INFO: IMAP session closed.
+[2026-06-02T21:09:04.131Z] INFO: Connected to IMAP server.
+[2026-06-02T21:09:05.787Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:09:06.200Z] INFO: IMAP session closed.
+[2026-06-02T21:10:03.781Z] INFO: Connected to IMAP server.
+[2026-06-02T21:10:05.422Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:10:05.832Z] INFO: IMAP session closed.
+[2026-06-02T21:11:03.745Z] INFO: Connected to IMAP server.
+[2026-06-02T21:11:05.390Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:11:05.798Z] INFO: IMAP session closed.
+[2026-06-02T21:12:03.794Z] INFO: Connected to IMAP server.
+[2026-06-02T21:12:05.820Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:12:06.233Z] INFO: IMAP session closed.
+[2026-06-02T21:13:03.799Z] INFO: Connected to IMAP server.
+[2026-06-02T21:13:05.460Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:13:05.868Z] INFO: IMAP session closed.
+[2026-06-02T21:14:03.788Z] INFO: Connected to IMAP server.
+[2026-06-02T21:14:05.430Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:14:05.842Z] INFO: IMAP session closed.
+[2026-06-02T21:15:01.252Z] INFO: Metrics snapshot captured: df24c9a2-0268-49d2-a70d-683615be1249 | submissions=0 pending_jobs=0
+[2026-06-02T21:15:03.814Z] INFO: Connected to IMAP server.
+[2026-06-02T21:15:05.457Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:15:05.865Z] INFO: IMAP session closed.
+[2026-06-02T21:16:03.728Z] INFO: Connected to IMAP server.
+[2026-06-02T21:16:05.370Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:16:05.779Z] INFO: IMAP session closed.
+[2026-06-02T21:17:03.859Z] INFO: Connected to IMAP server.
+[2026-06-02T21:17:05.633Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:17:06.047Z] INFO: IMAP session closed.
+[2026-06-02T21:18:03.791Z] INFO: Connected to IMAP server.
+[2026-06-02T21:18:05.455Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:18:05.865Z] INFO: IMAP session closed.
+[2026-06-02T21:19:03.817Z] INFO: Connected to IMAP server.
+[2026-06-02T21:19:05.461Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:19:05.873Z] INFO: IMAP session closed.
+[2026-06-02T21:20:03.932Z] INFO: Connected to IMAP server.
+[2026-06-02T21:20:05.578Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:20:05.990Z] INFO: IMAP session closed.
+[2026-06-02T21:21:03.755Z] INFO: Connected to IMAP server.
+[2026-06-02T21:21:05.395Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:21:05.810Z] INFO: IMAP session closed.
+[2026-06-02T21:22:03.791Z] INFO: Connected to IMAP server.
+[2026-06-02T21:22:05.530Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:22:05.939Z] INFO: IMAP session closed.
+[2026-06-02T21:23:04.067Z] INFO: Connected to IMAP server.
+[2026-06-02T21:23:05.998Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:23:06.414Z] INFO: IMAP session closed.
+[2026-06-02T21:24:03.748Z] INFO: Connected to IMAP server.
+[2026-06-02T21:24:05.384Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:24:05.803Z] INFO: IMAP session closed.
+[2026-06-02T21:25:03.797Z] INFO: Connected to IMAP server.
+[2026-06-02T21:25:05.439Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:25:05.850Z] INFO: IMAP session closed.
+[2026-06-02T21:26:05.106Z] INFO: Connected to IMAP server.
+[2026-06-02T21:26:06.743Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:26:07.152Z] INFO: IMAP session closed.
+[2026-06-02T21:27:03.768Z] INFO: Connected to IMAP server.
+[2026-06-02T21:27:05.578Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:27:05.986Z] INFO: IMAP session closed.
+[2026-06-02T21:28:03.826Z] INFO: Connected to IMAP server.
+[2026-06-02T21:28:05.473Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:28:05.884Z] INFO: IMAP session closed.
+[2026-06-02T21:29:03.963Z] INFO: Connected to IMAP server.
+[2026-06-02T21:29:05.736Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:29:06.143Z] INFO: IMAP session closed.
+[2026-06-02T21:30:01.243Z] INFO: Metrics snapshot captured: 443da136-ff10-4354-89b6-8c8a00eff3f8 | submissions=0 pending_jobs=0
+[2026-06-02T21:30:04.131Z] INFO: Connected to IMAP server.
+[2026-06-02T21:30:05.780Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:30:06.189Z] INFO: IMAP session closed.
+[2026-06-02T21:31:03.790Z] INFO: Connected to IMAP server.
+[2026-06-02T21:31:05.514Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:31:05.924Z] INFO: IMAP session closed.
+[2026-06-02T21:31:55.812Z] INFO: Starting Gmail worker.
+[2026-06-02T21:31:55.944Z] INFO: Starting fulfillment worker.
+[2026-06-02T21:31:55.948Z] INFO: Starting metrics worker.
+[2026-06-02T21:31:55.955Z] INFO: Server running on port 5000 — NODE_ENV=development
+[2026-06-02T21:31:59.711Z] INFO: Connected to IMAP server.
+[2026-06-02T21:32:01.534Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:32:01.950Z] INFO: IMAP session closed.
+[2026-06-02T21:32:04.026Z] INFO: Connected to IMAP server.
+[2026-06-02T21:32:05.675Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:32:06.087Z] INFO: IMAP session closed.
+[2026-06-02T21:33:03.821Z] INFO: Connected to IMAP server.
+[2026-06-02T21:33:05.468Z] INFO: Found 1 unprocessed emails.
+[2026-06-02T21:33:06.718Z] ERROR: input.once is not a function
+[2026-06-02T21:33:07.554Z] INFO: IMAP session closed.
+[2026-06-02T21:33:30.482Z] INFO: Starting Gmail worker.
+[2026-06-02T21:33:30.585Z] INFO: Starting fulfillment worker.
+[2026-06-02T21:33:30.590Z] INFO: Starting metrics worker.
+[2026-06-02T21:33:30.595Z] INFO: Server running on port 5000 — NODE_ENV=development
+[2026-06-02T21:33:34.361Z] INFO: Connected to IMAP server.
+[2026-06-02T21:33:36.018Z] INFO: Found 1 unprocessed emails.
+[2026-06-02T21:33:37.256Z] ERROR: input.once is not a function
+[2026-06-02T21:33:38.076Z] INFO: IMAP session closed.
+[2026-06-02T21:34:04.297Z] INFO: Connected to IMAP server.
+[2026-06-02T21:34:05.933Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:34:06.342Z] INFO: IMAP session closed.
+[2026-06-02T21:34:30.651Z] INFO: Starting Gmail worker.
+[2026-06-02T21:34:30.764Z] INFO: Starting fulfillment worker.
+[2026-06-02T21:34:30.768Z] INFO: Starting metrics worker.
+[2026-06-02T21:34:30.774Z] INFO: Server running on port 5000 — NODE_ENV=development
+[2026-06-02T21:34:34.481Z] INFO: Connected to IMAP server.
+[2026-06-02T21:34:36.130Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:34:36.544Z] INFO: IMAP session closed.
+[2026-06-02T21:35:04.383Z] INFO: Connected to IMAP server.
+[2026-06-02T21:35:06.024Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:35:06.433Z] INFO: IMAP session closed.
+[2026-06-02T21:36:03.752Z] INFO: Connected to IMAP server.
+[2026-06-02T21:36:05.374Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:36:05.782Z] INFO: IMAP session closed.
+[2026-06-02T21:36:59.746Z] INFO: Starting Gmail worker.
+[2026-06-02T21:37:00.067Z] INFO: Starting fulfillment worker.
+[2026-06-02T21:37:00.082Z] INFO: Starting metrics worker.
+[2026-06-02T21:37:00.092Z] INFO: Server running on port 5000 — NODE_ENV=development
+[2026-06-02T21:37:03.819Z] INFO: Connected to IMAP server.
+[2026-06-02T21:37:03.828Z] INFO: Connected to IMAP server.
+[2026-06-02T21:37:05.482Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:37:05.487Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:37:05.895Z] INFO: IMAP session closed.
+[2026-06-02T21:37:05.901Z] INFO: IMAP session closed.
+[2026-06-02T21:38:04.329Z] INFO: Connected to IMAP server.
+[2026-06-02T21:38:05.971Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:38:06.378Z] INFO: IMAP session closed.
+[2026-06-02T21:38:33.685Z] INFO: Starting Gmail worker.
+[2026-06-02T21:38:33.802Z] INFO: Starting fulfillment worker.
+[2026-06-02T21:38:33.809Z] INFO: Starting metrics worker.
+[2026-06-02T21:38:33.818Z] INFO: Server running on port 5000 — NODE_ENV=development
+[2026-06-02T21:38:37.555Z] INFO: Connected to IMAP server.
+[2026-06-02T21:38:39.218Z] INFO: Found 2 unprocessed emails.
+[2026-06-02T21:38:40.455Z] ERROR: input.once is not a function
+[2026-06-02T21:38:41.699Z] ERROR: input.once is not a function
+[2026-06-02T21:38:42.527Z] INFO: IMAP session closed.
+[2026-06-02T21:39:04.002Z] INFO: Connected to IMAP server.
+[2026-06-02T21:39:05.726Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:39:06.140Z] INFO: IMAP session closed.
+[2026-06-02T21:40:04.006Z] INFO: Connected to IMAP server.
+[2026-06-02T21:40:05.735Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:40:06.156Z] INFO: IMAP session closed.
+[2026-06-02T21:41:03.873Z] INFO: Connected to IMAP server.
+[2026-06-02T21:41:05.521Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:41:05.946Z] INFO: IMAP session closed.
+[2026-06-02T21:42:03.863Z] INFO: Connected to IMAP server.
+[2026-06-02T21:42:05.520Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:42:05.931Z] INFO: IMAP session closed.
+[2026-06-02T21:43:03.792Z] INFO: Connected to IMAP server.
+[2026-06-02T21:43:05.455Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:43:05.871Z] INFO: IMAP session closed.
+[2026-06-02T21:44:03.772Z] INFO: Connected to IMAP server.
+[2026-06-02T21:44:05.425Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:44:06.040Z] INFO: IMAP session closed.
+[2026-06-02T21:45:01.366Z] INFO: Metrics snapshot captured: dbebabf5-407f-4078-a53c-3f9e5f986926 | submissions=0 pending_jobs=0
+[2026-06-02T21:45:04.914Z] INFO: Connected to IMAP server.
+[2026-06-02T21:45:06.557Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:45:06.965Z] INFO: IMAP session closed.
+[2026-06-02T21:46:03.882Z] INFO: Connected to IMAP server.
+[2026-06-02T21:46:05.521Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:46:05.931Z] INFO: IMAP session closed.
+[2026-06-02T21:47:04.014Z] INFO: Connected to IMAP server.
+[2026-06-02T21:47:05.664Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:47:06.075Z] INFO: IMAP session closed.
+[2026-06-02T21:48:03.701Z] INFO: Connected to IMAP server.
+[2026-06-02T21:48:05.358Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:48:05.763Z] INFO: IMAP session closed.
+[2026-06-02T21:49:03.725Z] INFO: Connected to IMAP server.
+[2026-06-02T21:49:05.354Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:49:05.760Z] INFO: IMAP session closed.
+[2026-06-02T21:49:16.269Z] INFO: Starting Gmail worker.
+[2026-06-02T21:49:16.399Z] INFO: Starting fulfillment worker.
+[2026-06-02T21:49:16.402Z] INFO: Starting metrics worker.
+[2026-06-02T21:49:16.409Z] INFO: Server running on port 5000 — NODE_ENV=development
+[2026-06-02T21:49:20.139Z] INFO: Connected to IMAP server.
+[2026-06-02T21:49:21.790Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:49:22.204Z] INFO: IMAP session closed.
+[2026-06-02T21:50:03.906Z] INFO: Connected to IMAP server.
+[2026-06-02T21:50:04.500Z] INFO: Connected to IMAP server.
+[2026-06-02T21:50:05.532Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:50:06.034Z] INFO: IMAP session closed.
+[2026-06-02T21:50:06.427Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:50:06.834Z] INFO: IMAP session closed.
+[2026-06-02T21:51:03.730Z] INFO: Connected to IMAP server.
+[2026-06-02T21:51:03.735Z] INFO: Connected to IMAP server.
+[2026-06-02T21:51:05.351Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:51:05.351Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:51:05.754Z] INFO: IMAP session closed.
+[2026-06-02T21:51:05.755Z] INFO: IMAP session closed.
+[2026-06-02T21:52:03.730Z] INFO: Connected to IMAP server.
+[2026-06-02T21:52:03.738Z] INFO: Connected to IMAP server.
+[2026-06-02T21:52:05.351Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:52:05.357Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:52:05.756Z] INFO: IMAP session closed.
+[2026-06-02T21:52:05.763Z] INFO: IMAP session closed.
+[2026-06-02T21:53:03.822Z] INFO: Connected to IMAP server.
+[2026-06-02T21:53:03.856Z] INFO: Connected to IMAP server.
+[2026-06-02T21:53:05.481Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:53:05.490Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:53:05.894Z] INFO: IMAP session closed.
+[2026-06-02T21:53:05.897Z] INFO: IMAP session closed.
+[2026-06-02T21:53:42.239Z] INFO: Starting Gmail worker.
+[2026-06-02T21:53:42.560Z] INFO: Starting fulfillment worker.
+[2026-06-02T21:53:42.584Z] INFO: Starting metrics worker.
+[2026-06-02T21:53:42.631Z] INFO: Server running on port 5000 — NODE_ENV=development
+[2026-06-02T21:53:42.261Z] INFO: Starting Gmail worker.
+[2026-06-02T21:53:42.581Z] INFO: Starting fulfillment worker.
+[2026-06-02T21:53:42.615Z] INFO: Starting metrics worker.
+[2026-06-02T21:53:42.669Z] INFO: Server running on port 5000 — NODE_ENV=development
+[2026-06-02T21:53:46.490Z] INFO: Connected to IMAP server.
+[2026-06-02T21:53:46.491Z] INFO: Connected to IMAP server.
+[2026-06-02T21:53:48.165Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:53:48.165Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:53:48.580Z] INFO: IMAP session closed.
+[2026-06-02T21:53:48.580Z] INFO: IMAP session closed.
+[2026-06-02T21:54:05.353Z] INFO: Connected to IMAP server.
+[2026-06-02T21:54:05.906Z] INFO: Connected to IMAP server.
+[2026-06-02T21:54:07.034Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:54:07.449Z] INFO: IMAP session closed.
+[2026-06-02T21:54:07.553Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:54:07.969Z] INFO: IMAP session closed.
+[2026-06-02T21:55:03.848Z] INFO: Connected to IMAP server.
+[2026-06-02T21:55:03.902Z] INFO: Connected to IMAP server.
+[2026-06-02T21:55:05.498Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:55:05.560Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:55:05.910Z] INFO: IMAP session closed.
+[2026-06-02T21:55:05.973Z] INFO: IMAP session closed.
+[2026-06-02T21:55:44.696Z] INFO: Starting Gmail worker.
+[2026-06-02T21:55:44.824Z] INFO: Starting fulfillment worker.
+[2026-06-02T21:55:44.830Z] INFO: Starting metrics worker.
+[2026-06-02T21:55:44.835Z] INFO: Server running on port 5000 — NODE_ENV=development
+[2026-06-02T21:55:48.590Z] INFO: Connected to IMAP server.
+[2026-06-02T21:55:50.243Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:55:50.659Z] INFO: IMAP session closed.
+[2026-06-02T21:56:03.834Z] INFO: Connected to IMAP server.
+[2026-06-02T21:56:04.256Z] INFO: Connected to IMAP server.
+[2026-06-02T21:56:05.483Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:56:05.893Z] INFO: IMAP session closed.
+[2026-06-02T21:56:05.917Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:56:06.331Z] INFO: IMAP session closed.
+[2026-06-02T21:57:03.822Z] INFO: Connected to IMAP server.
+[2026-06-02T21:57:03.822Z] INFO: Connected to IMAP server.
+[2026-06-02T21:57:05.465Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:57:05.468Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:57:05.875Z] INFO: IMAP session closed.
+[2026-06-02T21:57:05.880Z] INFO: IMAP session closed.
+[2026-06-02T21:58:03.788Z] INFO: Connected to IMAP server.
+[2026-06-02T21:58:03.818Z] INFO: Connected to IMAP server.
+[2026-06-02T21:58:05.422Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:58:05.468Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:58:05.831Z] INFO: IMAP session closed.
+[2026-06-02T21:58:05.882Z] INFO: IMAP session closed.
+[2026-06-02T21:59:03.770Z] INFO: Connected to IMAP server.
+[2026-06-02T21:59:03.779Z] INFO: Connected to IMAP server.
+[2026-06-02T21:59:05.408Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:59:05.419Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T21:59:05.818Z] INFO: IMAP session closed.
+[2026-06-02T21:59:05.830Z] INFO: IMAP session closed.
+[2026-06-02T22:00:01.251Z] INFO: Metrics snapshot captured: b1dd79bc-8b61-435f-8b24-309243efb347 | submissions=0 pending_jobs=0
+[2026-06-02T22:00:01.461Z] ERROR: Metrics worker error: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+[2026-06-02T22:00:03.793Z] INFO: Connected to IMAP server.
+[2026-06-02T22:00:05.463Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T22:00:05.874Z] INFO: IMAP session closed.
+[2026-06-02T22:00:08.121Z] INFO: Connected to IMAP server.
+[2026-06-02T22:00:09.768Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T22:00:10.178Z] INFO: IMAP session closed.
+[2026-06-02T22:01:03.764Z] INFO: Connected to IMAP server.
+[2026-06-02T22:01:03.769Z] INFO: Connected to IMAP server.
+[2026-06-02T22:01:05.409Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T22:01:05.410Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T22:01:05.819Z] INFO: IMAP session closed.
+[2026-06-02T22:01:05.818Z] INFO: IMAP session closed.
+[2026-06-02T22:02:03.772Z] INFO: Connected to IMAP server.
+[2026-06-02T22:02:03.774Z] INFO: Connected to IMAP server.
+[2026-06-02T22:02:05.423Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T22:02:05.431Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T22:02:05.835Z] INFO: IMAP session closed.
+[2026-06-02T22:02:05.843Z] INFO: IMAP session closed.
+[2026-06-02T22:03:06.430Z] INFO: Connected to IMAP server.
+[2026-06-02T22:03:07.953Z] INFO: Connected to IMAP server.
+[2026-06-02T22:03:08.110Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T22:03:08.525Z] INFO: IMAP session closed.
+[2026-06-02T22:03:09.708Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T22:03:10.117Z] INFO: IMAP session closed.
+[2026-06-02T22:04:03.891Z] INFO: Connected to IMAP server.
+[2026-06-02T22:04:03.898Z] INFO: Connected to IMAP server.
+[2026-06-02T22:04:05.686Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T22:04:05.686Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T22:04:06.094Z] INFO: IMAP session closed.
+[2026-06-02T22:04:06.094Z] INFO: IMAP session closed.
+[2026-06-02T22:05:03.731Z] INFO: Connected to IMAP server.
+[2026-06-02T22:05:03.747Z] INFO: Connected to IMAP server.
+[2026-06-02T22:05:05.360Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T22:05:05.381Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T22:05:05.768Z] INFO: IMAP session closed.
+[2026-06-02T22:05:05.790Z] INFO: IMAP session closed.
+[2026-06-02T22:06:04.073Z] INFO: Connected to IMAP server.
+[2026-06-02T22:06:04.075Z] INFO: Connected to IMAP server.
+[2026-06-02T22:06:05.740Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T22:06:05.740Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T22:06:06.149Z] INFO: IMAP session closed.
+[2026-06-02T22:06:06.149Z] INFO: IMAP session closed.
+[2026-06-02T22:07:00.293Z] INFO: Starting Gmail worker.
+[2026-06-02T22:07:00.381Z] INFO: Starting fulfillment worker.
+[2026-06-02T22:07:00.385Z] INFO: Starting metrics worker.
+[2026-06-02T22:07:00.389Z] INFO: Server running on port 5000 — NODE_ENV=development
+[2026-06-02T22:07:00.293Z] INFO: Starting Gmail worker.
+[2026-06-02T22:07:00.385Z] INFO: Starting fulfillment worker.
+[2026-06-02T22:07:00.389Z] INFO: Starting metrics worker.
+[2026-06-02T22:07:00.394Z] INFO: Server running on port 5000 — NODE_ENV=development
+[2026-06-02T22:07:04.215Z] INFO: Connected to IMAP server.
+[2026-06-02T22:07:04.215Z] INFO: Connected to IMAP server.
+[2026-06-02T22:07:05.870Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T22:07:05.886Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T22:07:06.284Z] INFO: IMAP session closed.
+[2026-06-02T22:07:06.300Z] INFO: IMAP session closed.
+[2026-06-02T22:08:03.987Z] INFO: Connected to IMAP server.
+[2026-06-02T22:08:04.026Z] INFO: Connected to IMAP server.
+[2026-06-02T22:08:05.681Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T22:08:05.690Z] INFO: Found 0 unprocessed emails.
+[2026-06-02T22:08:06.089Z] INFO: IMAP session closed.
+[2026-06-02T22:08:06.097Z] INFO: IMAP session closed.
+[2026-06-02T22:08:25.868Z] INFO: Starting Gmail worker.
+[2026-06-02T22:08:26.003Z] INFO: Starting fulfillment worker.
+[2026-06-02T22:08:26.007Z] INFO: Starting metrics worker.
+[2026-06-02T22:08:26.011Z] INFO: Server running on port 5000 — NODE_ENV=development
+[2026-06-02T22:08:25.891Z] INFO: Starting Gmail worker.
+[2026-06-02T22:08:26.017Z] INFO: Starting fulfillment worker.
+[2026-06-02T22:08:26.022Z] INFO: Starting metrics worker.
+[2026-06-02T22:08:26.028Z] INFO: Server running on port 5000 — NODE_ENV=development
+[2026-06-02T22:08:29.751Z] INFO: Connected to IMAP server.
+[2026-06-02T22:08:29.752Z] INFO: Connected to IMAP server.
+[2026-06-02T22:08:31.404Z] INFO: Found 11 unseen unprocessed emails.
+[2026-06-02T22:08:31.404Z] INFO: Found 11 unseen unprocessed emails.
+[2026-06-02T22:08:33.401Z] INFO: Duplicate XM account skipped: 92432665
+[2026-06-02T22:08:33.440Z] INFO: Duplicate XM account skipped: 92432665
+[2026-06-02T22:08:33.623Z] INFO: Processed XM account: 92432665
+[2026-06-02T22:08:33.667Z] INFO: Processed XM account: 92432665
+[2026-06-02T22:08:35.240Z] INFO: Duplicate XM account skipped: 335320929
+[2026-06-02T22:08:35.298Z] INFO: Duplicate XM account skipped: 335320929
+[2026-06-02T22:08:35.427Z] INFO: Processed XM account: 335320929
+[2026-06-02T22:08:35.486Z] INFO: Processed XM account: 335320929
+[2026-06-02T22:08:36.280Z] WARN: Failed to extract XM account ID.
+[2026-06-02T22:08:36.337Z] WARN: Failed to extract XM account ID.
+[2026-06-02T22:09:03.772Z] INFO: Connected to IMAP server.
+[2026-06-02T22:09:03.780Z] INFO: Connected to IMAP server.
+[2026-06-02T22:09:05.399Z] INFO: Found 8 unseen unprocessed emails.
+[2026-06-02T22:09:05.406Z] INFO: Found 8 unseen unprocessed emails.
+[2026-06-02T22:09:15.918Z] WARN: Failed to extract XM account ID.
+[2026-06-02T22:09:18.702Z] INFO: Duplicate XM account skipped: 317378922
+[2026-06-02T22:09:18.892Z] INFO: Processed XM account: 317378922
+[2026-06-02T22:09:19.976Z] WARN: Failed to extract XM account ID.
+[2026-06-02T22:09:20.372Z] WARN: Failed to extract XM account ID.
+[2026-06-02T22:09:20.743Z] INFO: Duplicate XM account skipped: 401274499
+[2026-06-02T22:09:20.831Z] WARN: Failed to extract XM account ID.
+[2026-06-02T22:09:20.928Z] INFO: Processed XM account: 401274499
+[2026-06-02T22:09:21.198Z] INFO: Duplicate XM account skipped: 317378922
+[2026-06-02T22:09:21.383Z] INFO: Processed XM account: 317378922
+[2026-06-02T22:09:22.409Z] INFO: Duplicate XM account skipped: 401274499
+[2026-06-02T22:09:22.445Z] INFO: Duplicate XM account skipped: 317378922
+[2026-06-02T22:09:22.595Z] INFO: Processed XM account: 401274499
+[2026-06-02T22:09:22.633Z] INFO: Processed XM account: 317378922
+[2026-06-02T22:09:23.513Z] INFO: Duplicate XM account skipped: 168819616
+[2026-06-02T22:09:23.643Z] INFO: Duplicate XM account skipped: 168819616
+[2026-06-02T22:09:23.660Z] INFO: Duplicate XM account skipped: 317378922
+[2026-06-02T22:09:23.698Z] INFO: Duplicate XM account skipped: 401274499
+[2026-06-02T22:09:23.701Z] INFO: Processed XM account: 168819616
+[2026-06-02T22:09:23.829Z] INFO: Processed XM account: 168819616
+[2026-06-02T22:09:23.847Z] INFO: Processed XM account: 317378922
+[2026-06-02T22:09:23.885Z] INFO: Processed XM account: 401274499
+[2026-06-02T22:09:24.883Z] INFO: Duplicate XM account skipped: 381787514
+[2026-06-02T22:09:24.915Z] INFO: Duplicate XM account skipped: 168819616
+[2026-06-02T22:09:25.069Z] INFO: Processed XM account: 381787514
+[2026-06-02T22:09:25.105Z] INFO: Processed XM account: 168819616
+[2026-06-02T22:09:25.535Z] INFO: Duplicate XM account skipped: 381787514
+[2026-06-02T22:09:25.742Z] INFO: Processed XM account: 381787514
+[2026-06-02T22:09:25.742Z] INFO: Duplicate XM account skipped: 401274499
+[2026-06-02T22:09:25.894Z] WARN: Failed to extract XM account ID.
+[2026-06-02T22:09:25.928Z] INFO: Processed XM account: 401274499
+[2026-06-02T22:09:26.140Z] INFO: Duplicate XM account skipped: 381787514
+[2026-06-02T22:09:26.336Z] INFO: Processed XM account: 381787514
+[2026-06-02T22:09:27.190Z] WARN: Failed to extract XM account ID.
+[2026-06-02T22:09:27.322Z] INFO: XM account saved: 345420248
+[2026-06-02T22:09:27.385Z] WARN: Failed to extract XM account ID.
+[2026-06-02T22:09:27.510Z] INFO: Processed XM account: 345420248
+[2026-06-02T22:09:27.795Z] INFO: Duplicate XM account skipped: 168819616
+[2026-06-02T22:09:27.986Z] INFO: Processed XM account: 168819616
+[2026-06-02T22:09:28.400Z] INFO: Duplicate XM account skipped: 345420248
+[2026-06-02T22:09:28.590Z] INFO: Processed XM account: 345420248
+[2026-06-02T22:09:28.717Z] INFO: XM account saved: 401274673
+[2026-06-02T22:09:28.905Z] INFO: Processed XM account: 401274673
+[2026-06-02T22:09:29.457Z] INFO: Duplicate XM account skipped: 345420248
+[2026-06-02T22:09:29.647Z] INFO: Processed XM account: 345420248
+[2026-06-02T22:09:29.664Z] INFO: Duplicate XM account skipped: 401274673
+[2026-06-02T22:09:29.720Z] INFO: IMAP session closed.
+[2026-06-02T22:09:29.852Z] INFO: Processed XM account: 401274673
+[2026-06-02T22:09:29.855Z] INFO: Duplicate XM account skipped: 381787514
+[2026-06-02T22:09:30.043Z] INFO: Processed XM account: 381787514
+[2026-06-02T22:09:30.671Z] INFO: IMAP session closed.
+[2026-06-02T22:09:31.478Z] INFO: Duplicate XM account skipped: 401274673
+[2026-06-02T22:09:31.668Z] INFO: Processed XM account: 401274673
+[2026-06-02T22:09:31.689Z] WARN: Failed to extract XM account ID.
+[2026-06-02T22:09:32.480Z] INFO: IMAP session closed.
+[2026-06-02T22:09:33.714Z] INFO: Duplicate XM account skipped: 345420248
+[2026-06-02T22:09:33.899Z] INFO: Processed XM account: 345420248
+[2026-06-02T22:09:35.742Z] INFO: Duplicate XM account skipped: 401274673
+[2026-06-02T22:09:35.927Z] INFO: Processed XM account: 401274673
+[2026-06-02T22:09:36.743Z] INFO: IMAP session closed.
+[2026-06-02T22:10:03.765Z] INFO: Connected to IMAP server.
+[2026-06-02T22:10:03.766Z] INFO: Connected to IMAP server.
+[2026-06-02T22:10:05.409Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:10:05.417Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:10:05.818Z] INFO: IMAP session closed.
+[2026-06-02T22:10:05.832Z] INFO: IMAP session closed.
+[2026-06-02T22:11:03.720Z] INFO: Connected to IMAP server.
+[2026-06-02T22:11:03.726Z] INFO: Connected to IMAP server.
+[2026-06-02T22:11:05.348Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:11:05.352Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:11:05.754Z] INFO: IMAP session closed.
+[2026-06-02T22:11:05.769Z] INFO: IMAP session closed.
+[2026-06-02T22:12:03.762Z] INFO: Connected to IMAP server.
+[2026-06-02T22:12:03.967Z] INFO: Connected to IMAP server.
+[2026-06-02T22:12:05.385Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:12:05.603Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:12:05.790Z] INFO: IMAP session closed.
+[2026-06-02T22:12:06.012Z] INFO: IMAP session closed.
+[2026-06-02T22:13:03.705Z] INFO: Connected to IMAP server.
+[2026-06-02T22:13:03.736Z] INFO: Connected to IMAP server.
+[2026-06-02T22:13:05.324Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:13:05.367Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:13:05.730Z] INFO: IMAP session closed.
+[2026-06-02T22:13:05.785Z] INFO: IMAP session closed.
+[2026-06-02T22:14:03.770Z] INFO: Connected to IMAP server.
+[2026-06-02T22:14:03.771Z] INFO: Connected to IMAP server.
+[2026-06-02T22:14:05.415Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:14:05.415Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:14:05.825Z] INFO: IMAP session closed.
+[2026-06-02T22:14:05.825Z] INFO: IMAP session closed.
+[2026-06-02T22:15:01.630Z] INFO: Metrics snapshot captured: 7ac005c1-5972-4659-9200-39b01ba254c5 | submissions=0 pending_jobs=0
+[2026-06-02T22:15:01.630Z] INFO: Metrics snapshot captured: f9eb0404-a1ba-4ebb-9c81-5cf63b60003d | submissions=0 pending_jobs=0
+[2026-06-02T22:15:04.084Z] INFO: Connected to IMAP server.
+[2026-06-02T22:15:04.092Z] INFO: Connected to IMAP server.
+[2026-06-02T22:15:05.723Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:15:05.725Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:15:06.130Z] INFO: IMAP session closed.
+[2026-06-02T22:15:06.133Z] INFO: IMAP session closed.
+[2026-06-02T22:16:03.792Z] INFO: Connected to IMAP server.
+[2026-06-02T22:16:03.794Z] INFO: Connected to IMAP server.
+[2026-06-02T22:16:05.423Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:16:05.426Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:16:05.832Z] INFO: IMAP session closed.
+[2026-06-02T22:16:05.835Z] INFO: IMAP session closed.
+[2026-06-02T22:17:03.817Z] INFO: Connected to IMAP server.
+[2026-06-02T22:17:03.820Z] INFO: Connected to IMAP server.
+[2026-06-02T22:17:05.447Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:17:05.450Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:17:05.855Z] INFO: IMAP session closed.
+[2026-06-02T22:17:05.859Z] INFO: IMAP session closed.
+[2026-06-02T22:18:03.741Z] INFO: Connected to IMAP server.
+[2026-06-02T22:18:03.744Z] INFO: Connected to IMAP server.
+[2026-06-02T22:18:05.401Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:18:05.401Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:18:05.811Z] INFO: IMAP session closed.
+[2026-06-02T22:18:05.811Z] INFO: IMAP session closed.
+[2026-06-02T22:19:03.716Z] INFO: Connected to IMAP server.
+[2026-06-02T22:19:03.742Z] INFO: Connected to IMAP server.
+[2026-06-02T22:19:05.364Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:19:05.414Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:19:05.771Z] INFO: IMAP session closed.
+[2026-06-02T22:19:05.822Z] INFO: IMAP session closed.
+[2026-06-02T22:20:03.710Z] INFO: Connected to IMAP server.
+[2026-06-02T22:20:03.732Z] INFO: Connected to IMAP server.
+[2026-06-02T22:20:05.347Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:20:05.368Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:20:05.757Z] INFO: IMAP session closed.
+[2026-06-02T22:20:05.777Z] INFO: IMAP session closed.
+[2026-06-02T22:21:03.863Z] INFO: Connected to IMAP server.
+[2026-06-02T22:21:03.880Z] INFO: Connected to IMAP server.
+[2026-06-02T22:21:05.494Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:21:05.514Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:21:05.901Z] INFO: IMAP session closed.
+[2026-06-02T22:21:05.923Z] INFO: IMAP session closed.
+[2026-06-02T22:22:03.776Z] INFO: Connected to IMAP server.
+[2026-06-02T22:22:03.777Z] INFO: Connected to IMAP server.
+[2026-06-02T22:22:05.406Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:22:05.407Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:22:05.816Z] INFO: IMAP session closed.
+[2026-06-02T22:22:05.818Z] INFO: IMAP session closed.
+[2026-06-02T22:23:03.780Z] INFO: Connected to IMAP server.
+[2026-06-02T22:23:03.783Z] INFO: Connected to IMAP server.
+[2026-06-02T22:23:05.407Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:23:05.412Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:23:05.814Z] INFO: IMAP session closed.
+[2026-06-02T22:23:05.819Z] INFO: IMAP session closed.
+[2026-06-02T22:24:03.756Z] INFO: Connected to IMAP server.
+[2026-06-02T22:24:03.772Z] INFO: Connected to IMAP server.
+[2026-06-02T22:24:05.428Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:24:05.449Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:24:05.834Z] INFO: IMAP session closed.
+[2026-06-02T22:24:05.857Z] INFO: IMAP session closed.
+[2026-06-02T22:25:03.676Z] INFO: Connected to IMAP server.
+[2026-06-02T22:25:03.697Z] INFO: Connected to IMAP server.
+[2026-06-02T22:25:05.295Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:25:05.344Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:25:05.700Z] INFO: IMAP session closed.
+[2026-06-02T22:25:05.751Z] INFO: IMAP session closed.
+[2026-06-02T22:26:03.721Z] INFO: Connected to IMAP server.
+[2026-06-02T22:26:03.732Z] INFO: Connected to IMAP server.
+[2026-06-02T22:26:05.352Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:26:05.364Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:26:05.759Z] INFO: IMAP session closed.
+[2026-06-02T22:26:05.772Z] INFO: IMAP session closed.
+[2026-06-02T22:27:03.701Z] INFO: Connected to IMAP server.
+[2026-06-02T22:27:03.724Z] INFO: Connected to IMAP server.
+[2026-06-02T22:27:05.321Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:27:05.360Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:27:05.726Z] INFO: IMAP session closed.
+[2026-06-02T22:27:05.768Z] INFO: IMAP session closed.
+[2026-06-02T22:28:03.754Z] INFO: Connected to IMAP server.
+[2026-06-02T22:28:03.764Z] INFO: Connected to IMAP server.
+[2026-06-02T22:28:05.399Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:28:05.398Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:28:05.806Z] INFO: IMAP session closed.
+[2026-06-02T22:28:05.807Z] INFO: IMAP session closed.
+[2026-06-02T22:29:03.707Z] INFO: Connected to IMAP server.
+[2026-06-02T22:29:03.712Z] INFO: Connected to IMAP server.
+[2026-06-02T22:29:05.353Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:29:05.353Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:29:05.760Z] INFO: IMAP session closed.
+[2026-06-02T22:29:05.760Z] INFO: IMAP session closed.
+[2026-06-02T22:30:00.922Z] ERROR: Metrics worker error: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+[2026-06-02T22:30:01.285Z] INFO: Metrics snapshot captured: 1064fabe-92c8-482e-be63-e8ca9fd4de3f | submissions=0 pending_jobs=0
+[2026-06-02T22:30:03.764Z] INFO: Connected to IMAP server.
+[2026-06-02T22:30:03.770Z] INFO: Connected to IMAP server.
+[2026-06-02T22:30:05.392Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:30:05.395Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:30:05.798Z] INFO: IMAP session closed.
+[2026-06-02T22:30:05.802Z] INFO: IMAP session closed.
+[2026-06-02T22:31:03.730Z] INFO: Connected to IMAP server.
+[2026-06-02T22:31:03.763Z] INFO: Connected to IMAP server.
+[2026-06-02T22:31:05.347Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:31:05.396Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:31:05.751Z] INFO: IMAP session closed.
+[2026-06-02T22:31:05.803Z] INFO: IMAP session closed.
+[2026-06-02T22:32:03.687Z] INFO: Connected to IMAP server.
+[2026-06-02T22:32:03.690Z] INFO: Connected to IMAP server.
+[2026-06-02T22:32:05.318Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:32:05.321Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:32:05.725Z] INFO: IMAP session closed.
+[2026-06-02T22:32:05.728Z] INFO: IMAP session closed.
+[2026-06-02T22:33:04.054Z] INFO: Connected to IMAP server.
+[2026-06-02T22:33:04.059Z] INFO: Connected to IMAP server.
+[2026-06-02T22:33:05.680Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:33:05.682Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:33:06.084Z] INFO: IMAP session closed.
+[2026-06-02T22:33:06.086Z] INFO: IMAP session closed.
+[2026-06-02T22:34:03.732Z] INFO: Connected to IMAP server.
+[2026-06-02T22:34:03.732Z] INFO: Connected to IMAP server.
+[2026-06-02T22:34:05.386Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:34:05.386Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:34:05.797Z] INFO: IMAP session closed.
+[2026-06-02T22:34:05.799Z] INFO: IMAP session closed.
+[2026-06-02T22:35:04.205Z] INFO: Connected to IMAP server.
+[2026-06-02T22:35:04.341Z] INFO: Connected to IMAP server.
+[2026-06-02T22:35:05.845Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:35:05.993Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:35:06.253Z] INFO: IMAP session closed.
+[2026-06-02T22:35:06.406Z] INFO: IMAP session closed.
+[2026-06-02T22:36:03.767Z] INFO: Connected to IMAP server.
+[2026-06-02T22:36:03.790Z] INFO: Connected to IMAP server.
+[2026-06-02T22:36:05.419Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:36:05.448Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:36:05.831Z] INFO: IMAP session closed.
+[2026-06-02T22:36:05.860Z] INFO: IMAP session closed.
+[2026-06-02T22:37:03.781Z] INFO: Connected to IMAP server.
+[2026-06-02T22:37:03.861Z] INFO: Connected to IMAP server.
+[2026-06-02T22:37:05.469Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:37:05.516Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:37:05.879Z] INFO: IMAP session closed.
+[2026-06-02T22:37:05.928Z] INFO: IMAP session closed.
+[2026-06-02T22:38:04.680Z] INFO: Connected to IMAP server.
+[2026-06-02T22:38:04.680Z] INFO: Connected to IMAP server.
+[2026-06-02T22:38:06.383Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:38:06.383Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:38:06.793Z] INFO: IMAP session closed.
+[2026-06-02T22:38:06.920Z] INFO: IMAP session closed.
+[2026-06-02T22:39:03.741Z] INFO: Connected to IMAP server.
+[2026-06-02T22:39:03.752Z] INFO: Connected to IMAP server.
+[2026-06-02T22:39:05.373Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:39:05.380Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:39:05.780Z] INFO: IMAP session closed.
+[2026-06-02T22:39:05.785Z] INFO: IMAP session closed.
+[2026-06-02T22:40:03.727Z] INFO: Connected to IMAP server.
+[2026-06-02T22:40:03.733Z] INFO: Connected to IMAP server.
+[2026-06-02T22:40:05.356Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:40:05.357Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T22:40:05.762Z] INFO: IMAP session closed.
+[2026-06-02T22:40:05.765Z] INFO: IMAP session closed.
+[2026-06-02T23:57:41.750Z] INFO: Starting Gmail worker.
+[2026-06-02T23:57:42.048Z] INFO: Starting fulfillment worker.
+[2026-06-02T23:57:42.056Z] INFO: Starting metrics worker.
+[2026-06-02T23:57:42.069Z] INFO: Starting verification worker.
+[2026-06-02T23:57:42.102Z] INFO: Server running on port 5000 — NODE_ENV=development
+[2026-06-02T23:57:45.868Z] INFO: Connected to IMAP server.
+[2026-06-02T23:57:47.578Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T23:57:47.988Z] INFO: IMAP session closed.
+[2026-06-02T23:58:03.956Z] INFO: Connected to IMAP server.
+[2026-06-02T23:58:05.776Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T23:58:06.183Z] INFO: IMAP session closed.
+[2026-06-02T23:59:04.085Z] INFO: Connected to IMAP server.
+[2026-06-02T23:59:05.914Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-02T23:59:06.428Z] INFO: IMAP session closed.
+[2026-06-03T00:00:01.286Z] INFO: Metrics snapshot captured: 8fcb7c0c-1b13-4dbf-92d1-1e64a2468b85 | submissions=0 pending_jobs=0
+[2026-06-03T00:00:03.859Z] INFO: Connected to IMAP server.
+[2026-06-03T00:00:05.502Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:00:05.912Z] INFO: IMAP session closed.
+[2026-06-03T00:01:03.884Z] INFO: Connected to IMAP server.
+[2026-06-03T00:01:05.947Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:01:06.357Z] INFO: IMAP session closed.
+[2026-06-03T00:02:03.888Z] INFO: Connected to IMAP server.
+[2026-06-03T00:02:05.730Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:02:06.136Z] INFO: IMAP session closed.
+[2026-06-03T00:03:03.907Z] INFO: Connected to IMAP server.
+[2026-06-03T00:03:05.641Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:03:06.151Z] INFO: IMAP session closed.
+[2026-06-03T00:04:03.822Z] INFO: Connected to IMAP server.
+[2026-06-03T00:04:05.570Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:04:05.983Z] INFO: IMAP session closed.
+[2026-06-03T00:05:04.016Z] INFO: Connected to IMAP server.
+[2026-06-03T00:05:05.856Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:05:06.369Z] INFO: IMAP session closed.
+[2026-06-03T00:06:03.949Z] INFO: Connected to IMAP server.
+[2026-06-03T00:06:06.327Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:06:06.786Z] INFO: IMAP session closed.
+[2026-06-03T00:07:08.146Z] INFO: Connected to IMAP server.
+[2026-06-03T00:07:09.874Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:07:10.317Z] INFO: IMAP session closed.
+[2026-06-03T00:08:04.035Z] INFO: Connected to IMAP server.
+[2026-06-03T00:08:05.884Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:08:06.395Z] INFO: IMAP session closed.
+[2026-06-03T00:09:03.906Z] INFO: Connected to IMAP server.
+[2026-06-03T00:09:05.577Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:09:06.079Z] INFO: IMAP session closed.
+[2026-06-03T00:10:03.947Z] INFO: Connected to IMAP server.
+[2026-06-03T00:10:05.687Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:10:06.098Z] INFO: IMAP session closed.
+[2026-06-03T00:11:08.150Z] INFO: Connected to IMAP server.
+[2026-06-03T00:11:09.893Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:11:10.300Z] INFO: IMAP session closed.
+[2026-06-03T00:12:03.793Z] INFO: Connected to IMAP server.
+[2026-06-03T00:12:05.440Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:12:05.852Z] INFO: IMAP session closed.
+[2026-06-03T00:12:44.638Z] INFO: Starting Gmail worker.
+[2026-06-03T00:12:44.909Z] INFO: Starting fulfillment worker.
+[2026-06-03T00:12:44.919Z] INFO: Starting metrics worker.
+[2026-06-03T00:12:44.934Z] INFO: Starting verification worker.
+[2026-06-03T00:12:44.959Z] INFO: Server running on port 5000 — NODE_ENV=development
+[2026-06-03T00:12:48.838Z] INFO: Connected to IMAP server.
+[2026-06-03T00:12:50.770Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:12:51.233Z] INFO: IMAP session closed.
+[2026-06-03T00:13:03.788Z] INFO: Connected to IMAP server.
+[2026-06-03T00:13:05.502Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:13:05.914Z] INFO: IMAP session closed.
+[2026-06-03T00:14:49.790Z] INFO: Starting Gmail worker.
+[2026-06-03T00:14:49.937Z] INFO: Starting fulfillment worker.
+[2026-06-03T00:14:49.944Z] INFO: Starting metrics worker.
+[2026-06-03T00:14:49.953Z] INFO: Starting verification worker.
+[2026-06-03T00:14:49.970Z] INFO: Server running on port 5000 — NODE_ENV=development
+[2026-06-03T00:14:54.156Z] INFO: Connected to IMAP server.
+[2026-06-03T00:14:55.814Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:14:56.229Z] INFO: IMAP session closed.
+[2026-06-03T00:15:01.550Z] INFO: Metrics snapshot captured: 39a861e8-18fc-4f40-b095-a81ca86943f1 | submissions=0 pending_jobs=0
+[2026-06-03T00:15:04.063Z] INFO: Connected to IMAP server.
+[2026-06-03T00:15:05.734Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:15:06.253Z] INFO: IMAP session closed.
+[2026-06-03T00:16:04.001Z] INFO: Connected to IMAP server.
+[2026-06-03T00:16:05.735Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:16:06.148Z] INFO: IMAP session closed.
+[2026-06-03T00:17:03.793Z] INFO: Connected to IMAP server.
+[2026-06-03T00:17:05.457Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:17:05.965Z] INFO: IMAP session closed.
+[2026-06-03T00:18:09.137Z] INFO: Connected to IMAP server.
+[2026-06-03T00:18:10.786Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:18:11.293Z] INFO: IMAP session closed.
+[2026-06-03T00:19:04.115Z] INFO: Connected to IMAP server.
+[2026-06-03T00:19:05.955Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:19:06.368Z] INFO: IMAP session closed.
+[2026-06-03T00:20:03.814Z] INFO: Connected to IMAP server.
+[2026-06-03T00:20:05.553Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:20:05.978Z] INFO: IMAP session closed.
+[2026-06-03T00:21:04.777Z] INFO: Connected to IMAP server.
+[2026-06-03T00:21:06.548Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:21:06.958Z] INFO: IMAP session closed.
+[2026-06-03T00:22:03.848Z] INFO: Connected to IMAP server.
+[2026-06-03T00:22:05.570Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:22:05.979Z] INFO: IMAP session closed.
+[2026-06-03T00:23:10.835Z] INFO: Connected to IMAP server.
+[2026-06-03T00:23:13.360Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:23:13.772Z] INFO: IMAP session closed.
+[2026-06-03T00:24:03.977Z] INFO: Connected to IMAP server.
+[2026-06-03T00:24:05.673Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:24:06.096Z] INFO: IMAP session closed.
+[2026-06-03T00:25:04.060Z] INFO: Connected to IMAP server.
+[2026-06-03T00:25:05.796Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:25:06.310Z] INFO: IMAP session closed.
+[2026-06-03T00:26:03.861Z] INFO: Connected to IMAP server.
+[2026-06-03T00:26:05.491Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:26:05.897Z] INFO: IMAP session closed.
+[2026-06-03T00:27:04.070Z] INFO: Connected to IMAP server.
+[2026-06-03T00:27:05.810Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:27:06.323Z] INFO: IMAP session closed.
+[2026-06-03T00:28:04.078Z] INFO: Connected to IMAP server.
+[2026-06-03T00:28:05.709Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:28:06.117Z] INFO: IMAP session closed.
+[2026-06-03T00:29:03.881Z] INFO: Connected to IMAP server.
+[2026-06-03T00:29:05.826Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:29:06.343Z] INFO: IMAP session closed.
+[2026-06-03T00:30:01.514Z] INFO: Metrics snapshot captured: 19491d5d-520c-4001-a7b4-e6d14c6c9ea6 | submissions=0 pending_jobs=0
+[2026-06-03T00:30:04.195Z] INFO: Connected to IMAP server.
+[2026-06-03T00:30:05.943Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:30:06.353Z] INFO: IMAP session closed.
+[2026-06-03T00:31:03.895Z] INFO: Connected to IMAP server.
+[2026-06-03T00:31:05.551Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:31:05.959Z] INFO: IMAP session closed.
+[2026-06-03T00:32:04.109Z] INFO: Connected to IMAP server.
+[2026-06-03T00:32:05.870Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:32:06.279Z] INFO: IMAP session closed.
+[2026-06-03T00:33:04.014Z] INFO: Connected to IMAP server.
+[2026-06-03T00:33:05.855Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:33:06.294Z] INFO: IMAP session closed.
+[2026-06-03T00:34:03.815Z] INFO: Connected to IMAP server.
+[2026-06-03T00:34:05.556Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:34:05.979Z] INFO: IMAP session closed.
+[2026-06-03T00:35:03.924Z] INFO: Connected to IMAP server.
+[2026-06-03T00:35:05.972Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:35:06.375Z] INFO: IMAP session closed.
+[2026-06-03T00:48:04.638Z] INFO: Connected to IMAP server.
+[2026-06-03T00:48:06.287Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:48:06.697Z] INFO: IMAP session closed.
+[2026-06-03T00:49:03.930Z] INFO: Connected to IMAP server.
+[2026-06-03T00:49:05.620Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:49:06.078Z] INFO: IMAP session closed.
+[2026-06-03T00:50:06.391Z] INFO: Connected to IMAP server.
+[2026-06-03T00:50:08.008Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:50:08.440Z] INFO: IMAP session closed.
+[2026-06-03T00:51:04.044Z] INFO: Connected to IMAP server.
+[2026-06-03T00:51:05.989Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:51:06.395Z] INFO: IMAP session closed.
+[2026-06-03T00:52:03.847Z] INFO: Connected to IMAP server.
+[2026-06-03T00:52:05.533Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:52:05.938Z] INFO: IMAP session closed.
+[2026-06-03T00:53:04.054Z] INFO: Connected to IMAP server.
+[2026-06-03T00:53:05.800Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:53:06.209Z] INFO: IMAP session closed.
+[2026-06-03T00:54:04.068Z] INFO: Connected to IMAP server.
+[2026-06-03T00:54:05.911Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:54:06.321Z] INFO: IMAP session closed.
+[2026-06-03T00:55:04.278Z] INFO: Connected to IMAP server.
+[2026-06-03T00:55:06.019Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:55:06.429Z] INFO: IMAP session closed.
+[2026-06-03T00:56:04.080Z] INFO: Connected to IMAP server.
+[2026-06-03T00:56:05.926Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:56:06.337Z] INFO: IMAP session closed.
+[2026-06-03T00:57:03.985Z] INFO: Connected to IMAP server.
+[2026-06-03T00:57:05.636Z] INFO: Found 0 unseen unprocessed emails.
+[2026-06-03T00:57:06.048Z] INFO: IMAP session closed.

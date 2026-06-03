@@ -205,24 +205,28 @@ const process_email_message = async (
     try {
 
         /**
-         * Download raw email source.
+         * Download raw email source via UID.
+         * client.download() returns { content: ReadableStream, ... }.
+         * simpleParser requires the stream, not the wrapper object.
          */
 
-        const source = await client.download(
+        const { content } = await client.download(
 
-            message.uid
+            message.uid,
+            undefined,
+            { uid: true }
 
         );
 
 
 
         /**
-         * Parse email content.
+         * Parse email content from the readable stream.
          */
 
         const parsed_email = await simpleParser(
 
-            source
+            content
 
         );
 
@@ -396,42 +400,39 @@ export const process_xm_emails = async () => {
 
 
         /**
-         * Search unread emails.
+         * Search for unseen (unread) emails that have not yet
+         * been starred. The star flag is used as the processed
+         * marker — any unseen email without a star is new and
+         * needs to be handled. UIDs are stable across sessions
+         * unlike sequence numbers.
          */
 
-        const messages = await client.search({
+        const uids = await client.search(
 
-            seen: false
+            { seen: false, flagged: false },
+            { uid: true }
 
-        });
+        );
 
 
 
         logger.info(
 
-            `Found ${messages.length} unread emails.`
+            `Found ${uids.length} unseen unprocessed emails.`
 
         );
 
 
 
         /**
-         * Process each email.
+         * Process each unseen unstarred email.
          */
 
-        for (const uid of messages) {
-
-            const message = {
-
-                uid
-
-            };
-
-
+        for (const uid of uids) {
 
             await process_email_message(
 
-                message,
+                { uid },
                 client
 
             );
@@ -439,14 +440,19 @@ export const process_xm_emails = async () => {
 
 
             /**
-             * Mark email as read.
+             * Star the email after processing to mark it as
+             * already added. Starring keeps the email unread
+             * in the inbox while preventing re-processing on
+             * future polling runs.
              */
 
             await client.messageFlagsAdd(
 
                 uid,
 
-                ["\\Seen"]
+                ["\\Flagged"],
+
+                { uid: true }
 
             );
 

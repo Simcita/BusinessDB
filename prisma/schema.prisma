@@ -1,23 +1,38 @@
-// ======================================================
-// PRISMA CLIENT GENERATOR
-// ======================================================
+// ============================================================
+// GENERATOR
+// ============================================================
 
 generator client {
   provider = "prisma-client-js"
 }
 
-// ======================================================
-// DATABASE CONNECTION
-// ======================================================
+// ============================================================
+// DATASOURCE
+// ============================================================
+// Connection URL is managed exclusively in prisma.config.ts.
+// Prisma 7 removed url= from schema.prisma — do not add it.
+// ============================================================
 
 datasource db {
   provider = "postgresql"
-  // url removed – connection string now goes into prisma.config.ts
 }
 
-// ======================================================
-// ENUM: Admin Role
-// ======================================================
+
+// ============================================================
+// ============================================================
+// ENUMS
+// ============================================================
+// ============================================================
+
+
+// ============================================================
+// ENUM: AdminRole
+// ------------------------------------------------------------
+// Defines the three permission tiers for internal admins.
+// SUPER_ADMIN can delete records and manage other admins.
+// ADMIN can create and mutate campaigns and templates.
+// SUPPORT has read-only access to the dashboard.
+// ============================================================
 
 enum AdminRole {
   SUPER_ADMIN
@@ -25,25 +40,16 @@ enum AdminRole {
   SUPPORT
 }
 
-// ======================================================
-// ENUM: Job Status
-// ======================================================
 
-enum JobStatus {
-  PENDING
-  PROCESSING
-  COMPLETED
-  FAILED
-}
-
-// ======================================================
-// ENUM: Notification Channel
-// ======================================================
-
-enum NotificationChannel {
-  WHATSAPP
-  EMAIL
-}
+// ============================================================
+// ENUM: SubmissionStatus
+// ------------------------------------------------------------
+// Lifecycle states for a user verification submission.
+// PENDING  — awaiting verification check.
+// VERIFIED — XM account confirmed, fulfillment queued.
+// FAILED   — account not found in approved accounts.
+// DUPLICATE — account has already been claimed.
+// ============================================================
 
 enum SubmissionStatus {
   PENDING
@@ -52,10 +58,58 @@ enum SubmissionStatus {
   DUPLICATE
 }
 
+
+// ============================================================
+// ENUM: JobStatus
+// ------------------------------------------------------------
+// Lifecycle states for a fulfillment queue job.
+// PENDING    — waiting to be picked up by the worker.
+// PROCESSING — currently being executed (prevents double pickup).
+// COMPLETED  — delivery succeeded.
+// FAILED     — all retry attempts exhausted, moved to dead-letter queue.
+// ============================================================
+
+enum JobStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+
+// ============================================================
+// ENUM: NotificationChannel
+// ------------------------------------------------------------
+// Delivery channel used by FulfillmentJob and FailedJob.
+// Kept distinct from FulfillmentType to allow independent
+// evolution of the queue model vs the log model.
+// ============================================================
+
+enum NotificationChannel {
+  WHATSAPP
+  EMAIL
+}
+
+
+// ============================================================
+// ENUM: FulfillmentType
+// ------------------------------------------------------------
+// Delivery channel recorded in FulfillmentLog.
+// Mirrors NotificationChannel values but is semantically
+// owned by the immutable delivery history, not the queue.
+// ============================================================
+
 enum FulfillmentType {
   WHATSAPP
   EMAIL
 }
+
+
+// ============================================================
+// ENUM: DeliveryStatus
+// ------------------------------------------------------------
+// Outcome of a single delivery attempt in FulfillmentLog.
+// ============================================================
 
 enum DeliveryStatus {
   PENDING
@@ -64,101 +118,80 @@ enum DeliveryStatus {
 }
 
 
-// ======================================================
-// MODEL: Admin Users
-// ------------------------------------------------------
-// Stores internal system administrators.
-// ======================================================
+// ============================================================
+// ENUM: ParsingStatus
+// ------------------------------------------------------------
+// Outcome of a single Gmail parser attempt in ParserLog.
+// Replaces the previous unconstrained String? column to
+// enforce data integrity at the database level.
+// ============================================================
+
+enum ParsingStatus {
+  SUCCESS
+  FAILED
+}
+
+
+// ============================================================
+// ============================================================
+// MODELS
+// ============================================================
+// ============================================================
+
+
+// ============================================================
+// MODEL: AdminUser
+// ------------------------------------------------------------
+// Internal platform administrators.
+//
+// Deactivation is done via isActive = false — records are
+// never deleted so that audit logs retain a valid reference
+// to the admin who performed historical actions.
+//
+// Indexes:
+//   email    — enforced unique, used on every login query
+//   role     — used to filter SUPER_ADMIN / ADMIN / SUPPORT
+//   isActive — used to filter active-only admin lists
+// ============================================================
 
 model AdminUser {
 
-  id               String      @id @default(uuid())
+  id           String    @id @default(uuid())
+  fullName     String
+  email        String    @unique
+  passwordHash String
+  role         AdminRole @default(ADMIN)
+  isActive     Boolean   @default(true)
+  lastLoginAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
 
-  fullName         String
-
-  email            String      @unique
-
-  passwordHash     String
-
-  role             AdminRole   @default(ADMIN)
-
-  isActive         Boolean     @default(true)
-
-  lastLoginAt      DateTime?
-
-  createdAt        DateTime    @default(now())
-
-
-
+  @@index([role])
+  @@index([isActive])
   @@map("admin_users")
+
 }
 
 
-// ======================================================
-// MODEL: Failed Jobs
-// ------------------------------------------------------
-// Stores permanently failed fulfillment jobs.
-// ======================================================
-
-model FailedJob {
-
-  id                    String                @id @default(uuid())
-
-  originalJobId         String
-
-  notificationChannel   NotificationChannel
-
-  failureReason         String
-
-  payloadSnapshot       Json
-
-  retryAttempts         Int                   @default(0)
-
-  failedAt              DateTime              @default(now())
-
-
-
-  @@index([failedAt])
-
-  @@map("failed_jobs")
-}
-
-
-// ======================================================
-// MODEL: System Metrics
-// ------------------------------------------------------
-// Stores historical application metrics.
-// ======================================================
-
-model SystemMetric {
-
-  id                    String   @id @default(uuid())
-
-  totalSubmissions      Int      @default(0)
-
-  successfulVerifications Int    @default(0)
-
-  failedVerifications   Int      @default(0)
-
-  pendingJobs           Int      @default(0)
-
-  completedJobs         Int      @default(0)
-
-  failedJobs            Int      @default(0)
-
-  parserFailures        Int      @default(0)
-
-  createdAt             DateTime @default(now())
-
-
-
-  @@index([createdAt])
-
-  @@map("system_metrics")
-}
-
+// ============================================================
+// MODEL: XmApprovedAccount
+// ------------------------------------------------------------
+// XM broker account IDs extracted from incoming affiliate
+// notification emails by the Gmail worker.
+// These records are the authority for which account IDs are
+// eligible for user verification.
+//
+// Idempotency: the worker checks for an existing accountId
+// before inserting — no duplicates can exist.
+//
+// Indexes:
+//   accountId          — enforced unique, primary lookup key
+//   fetchedAt          — ordered listing on dashboard
+//   parsedSuccessfully — quick count of failed parses
+// ============================================================
 
 model XmApprovedAccount {
+
   id                 String   @id @default(uuid())
   accountId          String   @unique
   emailSubject       String?
@@ -169,97 +202,113 @@ model XmApprovedAccount {
 
   submissions UserSubmission[]
 
+  @@index([fetchedAt])
+  @@index([parsedSuccessfully])
   @@map("xm_approved_accounts")
+
 }
 
+
+// ============================================================
+// MODEL: UserSubmission
+// ------------------------------------------------------------
+// Verification form submissions from end-users. One row per
+// submission attempt. Status transitions:
+//   PENDING → VERIFIED   (cron matched account, fulfillment queued)
+//   PENDING → DUPLICATE  (account already claimed by another row)
+//
+// submittedAccountId stores exactly what the user typed at
+// submission time — no FK constraint. This allows submissions
+// to be created before the XM affiliate email has arrived in
+// the approved-accounts list.
+//
+// xmAccountId is nullable and is only populated by the
+// verification cron once the account is confirmed in
+// XmApprovedAccount. It retains the FK so admin queries
+// can still join VERIFIED rows to their approved account.
+//
+// Records are never deleted — status changes provide a full
+// lifecycle history. fulfilledAt is stamped when the
+// submission transitions to VERIFIED.
+//
+// campaignId links a submission to its originating campaign
+// so the fulfilment worker can send the correct Whop link.
+//
+// A conditional unique index on submitted_account_id
+// (WHERE status IN ('PENDING','VERIFIED')) prevents two active
+// claims for the same account ID at the database level.
+//
+// Indexes:
+//   email               — dashboard search, duplicate email check
+//   phone               — duplicate phone check
+//   submittedAccountId  — cron batch query, dashboard search
+//   xmAccountId         — join to XmApprovedAccount on VERIFIED rows
+//   status              — dashboard filter by status
+//   campaignId          — campaign-level analytics
+//   submittedAt         — ordered listing, date-range filters
+// ============================================================
+
 model UserSubmission {
+
   id                   String           @id @default(uuid())
   name                 String
   surname              String
   email                String
   phone                String
-  xmAccountId          String
+  submittedAccountId   String
+  xmAccountId          String?
   status               SubmissionStatus @default(PENDING)
   verificationAttempts Int              @default(1)
   ipAddress            String?
   campaignId           String?
   submittedAt          DateTime         @default(now())
+  updatedAt            DateTime         @updatedAt
   fulfilledAt          DateTime?
 
-  // ✅ relation attribute on one line
-  xmApprovedAccount XmApprovedAccount @relation(fields: [xmAccountId], references: [accountId])
-
-  fulfillmentLogs FulfillmentLog[]
-
-  // ✅ fixed: one line
-  campaign        Campaign?        @relation(fields: [campaignId], references: [id])
-  fulfillmentJobs FulfillmentJob[]
+  xmApprovedAccount XmApprovedAccount? @relation(fields: [xmAccountId], references: [accountId])
+  campaign          Campaign?          @relation(fields: [campaignId], references: [id])
+  fulfillmentLogs   FulfillmentLog[]
+  fulfillmentJobs   FulfillmentJob[]
 
   @@index([email])
   @@index([phone])
+  @@index([submittedAccountId])
+  @@index([xmAccountId])
   @@index([status])
+  @@index([campaignId])
+  @@index([submittedAt])
   @@map("user_submissions")
+
 }
 
-model FulfillmentLog {
-  id               String          @id @default(uuid())
-  submissionId     String
-  fulfillmentType  FulfillmentType
-  deliveryStatus   DeliveryStatus  @default(PENDING)
-  providerResponse String?
-  createdAt        DateTime        @default(now())
 
-  // ✅ relation attribute on one line
-  submission UserSubmission @relation(fields: [submissionId], references: [id])
-
-  @@map("fulfillment_logs")
-}
-
-// ======================================================
-// MODEL: Parser Logs
-// ------------------------------------------------------
-// Tracks email parser activity and failures.
-// ======================================================
-model ParserLog {
-  id                 String   @id @default(uuid())
-  emailSubject       String?
-  senderEmail        String?
-  parsingStatus      String?
-  extractedAccountId String?
-  failureReason      String?
-  createdAt          DateTime @default(now())
-
-  @@map("parser_logs")
-}
-
-// ======================================================
-// MODEL: Campaigns
-// ------------------------------------------------------
-// Stores affiliate campaign configuration.
-// ======================================================
-
-model Campaign {
-  id           String   @id @default(uuid())
-  campaignName String   @unique
-  brokerName   String
-  whopLink     String
-  isActive     Boolean  @default(true)
-  createdAt    DateTime @default(now())
-
-  submissions UserSubmission[]
-
-  @@map("campaigns")
-}
-
-// ======================================================
-// MODEL: Fulfillment Jobs
-// ------------------------------------------------------
-// Queue table for notification delivery.
-// ======================================================
+// ============================================================
+// MODEL: FulfillmentJob
+// ------------------------------------------------------------
+// Notification delivery queue. Two rows are created per
+// verified submission — one WHATSAPP and one EMAIL.
+// The fulfilment worker polls for PENDING rows in batches of
+// ten every minute.
+//
+// Retry logic (enforced in the worker):
+//   - On failure: retryCount++ and reset jobStatus to PENDING
+//     so the next cron tick picks it up again.
+//   - After retryCount >= 3: set jobStatus to FAILED and copy
+//     the job to FailedJob (dead-letter queue).
+//
+// scheduledFor allows future-dated delivery scheduling.
+//
+// Indexes:
+//   jobStatus    — the worker's primary WHERE clause
+//   scheduledFor — ordered pickup for time-sensitive delivery
+//   submissionId — join to submission, submission-level queries
+//   createdAt    — dashboard ordered listing
+// ============================================================
 
 model FulfillmentJob {
+
   id                  String              @id @default(uuid())
-  submissionId        String // ← added missing scalar field
+  submissionId        String
   notificationChannel NotificationChannel
   jobStatus           JobStatus           @default(PENDING)
   retryCount          Int                 @default(0)
@@ -267,22 +316,152 @@ model FulfillmentJob {
   scheduledFor        DateTime            @default(now())
   processedAt         DateTime?
   createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
 
-  // ✅ fixed: one line, and now references the new scalar field
   submission UserSubmission @relation(fields: [submissionId], references: [id])
 
   @@index([jobStatus])
   @@index([scheduledFor])
+  @@index([submissionId])
+  @@index([createdAt])
   @@map("fulfillment_jobs")
+
 }
 
-// ======================================================
-// MODEL: Notification Templates
-// ------------------------------------------------------
-// Stores reusable notification templates.
-// ======================================================
+
+// ============================================================
+// MODEL: FulfillmentLog
+// ------------------------------------------------------------
+// Immutable delivery attempt history. One row is written per
+// attempt — including every retry — giving a complete audit
+// trail of every delivery attempt, its outcome, and the raw
+// provider response.
+//
+// This table never changes existing rows. Every delivery
+// result (success or failure) appends a new row.
+//
+// Indexes:
+//   submissionId   — all logs for a single submission
+//   deliveryStatus — filter by SUCCESS / FAILED
+//   createdAt      — ordered listing
+// ============================================================
+
+model FulfillmentLog {
+
+  id               String          @id @default(uuid())
+  submissionId     String
+  fulfillmentType  FulfillmentType
+  deliveryStatus   DeliveryStatus  @default(PENDING)
+  providerResponse String?
+  createdAt        DateTime        @default(now())
+
+  submission UserSubmission @relation(fields: [submissionId], references: [id])
+
+  @@index([submissionId])
+  @@index([deliveryStatus])
+  @@index([createdAt])
+  @@map("fulfillment_logs")
+
+}
+
+
+// ============================================================
+// MODEL: FailedJob
+// ------------------------------------------------------------
+// Dead-letter queue. Jobs that exhaust the maximum retry
+// count (3) are copied here before being marked FAILED in
+// FulfillmentJob. Admins review these from the dashboard.
+//
+// payloadSnapshot stores the full FulfillmentJob record at
+// the moment of final failure for forensic investigation.
+// JSON is used deliberately here — it stores a snapshot of
+// a complex record rather than normalised relational data.
+//
+// Records are never deleted.
+//
+// Indexes:
+//   failedAt            — ordered listing on dashboard
+//   notificationChannel — filter by delivery channel
+//   originalJobId       — look up the source FulfillmentJob
+// ============================================================
+
+model FailedJob {
+
+  id                  String              @id @default(uuid())
+  originalJobId       String
+  notificationChannel NotificationChannel
+  failureReason       String
+  payloadSnapshot     Json
+  retryAttempts       Int                 @default(0)
+  failedAt            DateTime            @default(now())
+
+  @@index([failedAt])
+  @@index([notificationChannel])
+  @@index([originalJobId])
+  @@map("failed_jobs")
+
+}
+
+
+// ============================================================
+// MODEL: Campaign
+// ------------------------------------------------------------
+// Affiliate campaign configuration. Each campaign maps to a
+// specific broker and the Whop community link that eligible
+// users receive. Submissions are optionally linked to a
+// campaign so the fulfilment worker sends the correct link.
+//
+// Soft-delete via deletedAt: campaigns with linked submissions
+// cannot be hard-deleted, so this field is the safe removal
+// path. Service layer must filter WHERE deletedAt IS NULL.
+//
+// Indexes:
+//   campaignName — enforced unique, used on admin listing
+//   isActive     — active-only campaign filter
+//   createdAt    — ordered listing
+//   deletedAt    — fast exclusion of soft-deleted rows
+// ============================================================
+
+model Campaign {
+
+  id           String    @id @default(uuid())
+  campaignName String    @unique
+  brokerName   String
+  whopLink     String
+  isActive     Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  deletedAt    DateTime?
+
+  submissions UserSubmission[]
+
+  @@index([isActive])
+  @@index([createdAt])
+  @@index([deletedAt])
+  @@map("campaigns")
+
+}
+
+
+// ============================================================
+// MODEL: NotificationTemplate
+// ------------------------------------------------------------
+// Reusable message templates for WhatsApp and Email
+// notifications. subjectLine is required for EMAIL templates;
+// WhatsApp uses templateBody as the message body or as a
+// Meta template component reference.
+//
+// Soft-delete via deletedAt — same rationale as Campaign.
+//
+// Indexes:
+//   templateName     — enforced unique
+//   notificationType — filter by channel
+//   isActive         — active-only template filter
+//   deletedAt        — fast exclusion of soft-deleted rows
+// ============================================================
 
 model NotificationTemplate {
+
   id               String              @id @default(uuid())
   templateName     String              @unique
   notificationType NotificationChannel
@@ -290,23 +469,113 @@ model NotificationTemplate {
   templateBody     String
   isActive         Boolean             @default(true)
   createdAt        DateTime            @default(now())
+  updatedAt        DateTime            @updatedAt
+  deletedAt        DateTime?
 
+  @@index([notificationType])
+  @@index([isActive])
+  @@index([deletedAt])
   @@map("notification_templates")
+
 }
 
-// ======================================================
-// MODEL: Audit Logs
-// ------------------------------------------------------
-// Stores important system events.
-// ======================================================
+
+// ============================================================
+// MODEL: ParserLog
+// ------------------------------------------------------------
+// Immutable record of every email the Gmail worker processes.
+// One row per email regardless of outcome. Provides full
+// visibility into parser failures without tailing logs.
+//
+// parsingStatus uses the ParsingStatus enum (previously a
+// free-text String?) to enforce data integrity.
+//
+// Indexes:
+//   parsingStatus — filter FAILED parses on the parser page
+//   createdAt     — ordered listing, date-range filters
+// ============================================================
+
+model ParserLog {
+
+  id                 String         @id @default(uuid())
+  emailSubject       String?
+  senderEmail        String?
+  parsingStatus      ParsingStatus?
+  extractedAccountId String?
+  failureReason      String?
+  createdAt          DateTime       @default(now())
+
+  @@index([parsingStatus])
+  @@index([createdAt])
+  @@map("parser_logs")
+
+}
+
+
+// ============================================================
+// MODEL: SystemMetric
+// ------------------------------------------------------------
+// Point-in-time metric snapshots captured every 15 minutes
+// by the Metrics worker. Used for historical trending charts
+// on the dashboard overview page. Records are never deleted.
+//
+// Indexes:
+//   createdAt — time-series queries and range selects
+// ============================================================
+
+model SystemMetric {
+
+  id                      String   @id @default(uuid())
+  totalSubmissions        Int      @default(0)
+  successfulVerifications Int      @default(0)
+  failedVerifications     Int      @default(0)
+  pendingJobs             Int      @default(0)
+  completedJobs           Int      @default(0)
+  failedJobs              Int      @default(0)
+  parserFailures          Int      @default(0)
+  createdAt               DateTime @default(now())
+
+  @@index([createdAt])
+  @@map("system_metrics")
+
+}
+
+
+// ============================================================
+// MODEL: AuditLog
+// ------------------------------------------------------------
+// Immutable, append-only record of every significant platform
+// event — admin logins, campaign mutations, job retries,
+// worker activity, and fulfilment completions.
+//
+// performedBy stores the admin user UUID for human actions,
+// or the literal string "SYSTEM" for automated worker events.
+// This field is intentionally a String (not a relation) so
+// that audit records remain readable even if the admin user
+// is deactivated.
+//
+// Records are never modified or deleted.
+//
+// Indexes:
+//   eventType   — filter by event category on the audit page
+//   entityId    — all events for a specific entity (e.g. job id)
+//   performedBy — all actions by a specific admin
+//   createdAt   — ordered listing, date-range filters
+// ============================================================
 
 model AuditLog {
+
   id               String   @id @default(uuid())
   eventType        String
   eventDescription String
   entityId         String?
+  performedBy      String?
   createdAt        DateTime @default(now())
 
   @@index([eventType])
+  @@index([entityId])
+  @@index([performedBy])
+  @@index([createdAt])
   @@map("audit_logs")
+
 }
