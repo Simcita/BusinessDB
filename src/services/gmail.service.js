@@ -371,6 +371,25 @@ export const process_xm_emails = async () => {
 
     const client = create_imap_client();
 
+    /**
+     * Attach a no-op error listener before connecting.
+     * ImapFlow emits 'error' events (e.g. ECONNRESET) on the
+     * EventEmitter outside the Promise chain. Without a listener
+     * Node.js treats these as unhandled and crashes the process.
+     * The try/catch below still captures the rejection so the
+     * error is logged through the normal path.
+     */
+
+    client.on("error", (err) => {
+
+        logger.warn(
+
+            `IMAP connection error (handled): ${err.message}`
+
+        );
+
+    });
+
 
 
     try {
@@ -480,9 +499,17 @@ export const process_xm_emails = async () => {
 
         logger.error(
 
-            error.message
+            `Gmail worker error: ${error.message}`
 
         );
+
+        /**
+         * Force-close the connection if still open after an
+         * error. A half-open TLS socket would hold the port
+         * and block the next polling cycle.
+         */
+
+        try { await client.logout(); } catch { /* already closed */ }
 
     }
 
