@@ -4,6 +4,9 @@ import prisma from "../config/database.js";
 
 import logger from "../utils/logger.js";
 
+const POLL_CRON_SCHEDULE =
+    process.env.POLL_CRON_SCHEDULE || "*/15 * * * *";
+
 import {
 
     get_pending_submissions_batch,
@@ -317,17 +320,21 @@ const run_verification_pass = async () => {
 
 export const start_verification_worker = () => {
 
+    if (process.env.DISABLE_JOB_PROCESSING === "true") {
+
+        logger.info("Verification worker disabled via DISABLE_JOB_PROCESSING.");
+
+        return;
+
+    }
+
     logger.info(
-
-        "Starting verification worker."
-
+        `Starting verification worker (schedule: ${POLL_CRON_SCHEDULE}).`
     );
-
-
 
     cron.schedule(
 
-        "* * * * *",
+        POLL_CRON_SCHEDULE,
 
         async () => {
 

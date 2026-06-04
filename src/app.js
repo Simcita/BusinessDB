@@ -42,9 +42,14 @@ const app = express();
 
 app.use(helmet());
 
+const allowed_origins = (process.env.FRONTEND_URL || '')
+    .split(',')
+    .map(o => o.trim())
+    .filter(Boolean);
+
 app.use(
     cors({
-        origin: process.env.FRONTEND_URL,
+        origin: allowed_origins,
         credentials: true
     })
 );

@@ -2,6 +2,9 @@ import cron from "node-cron";
 
 import prisma from "../config/database.js";
 
+const POLL_CRON_SCHEDULE =
+    process.env.POLL_CRON_SCHEDULE || "*/15 * * * *";
+
 import logger from "../utils/logger.js";
 
 import {
@@ -409,10 +412,20 @@ const process_fulfillment_jobs = async () => {
 
 export const start_fulfillment_worker = () => {
 
-    logger.info("Starting fulfillment worker.");
+    if (process.env.DISABLE_JOB_PROCESSING === "true") {
+
+        logger.info("Fulfillment worker disabled via DISABLE_JOB_PROCESSING.");
+
+        return;
+
+    }
+
+    logger.info(
+        `Starting fulfillment worker (schedule: ${POLL_CRON_SCHEDULE}).`
+    );
 
     cron.schedule(
-        "* * * * *",
+        POLL_CRON_SCHEDULE,
         async () => {
             await process_fulfillment_jobs();
         }

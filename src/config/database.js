@@ -2,13 +2,19 @@ import pkg from '@prisma/client';
 const { PrismaClient } = pkg;
 
 import { PrismaPg } from '@prisma/adapter-pg';
+import pg from 'pg';
 
 import 'dotenv/config'
 
 
-const adapter = new PrismaPg({
+const pool = new pg.Pool({
     connectionString: process.env.DATABASE_URL,
-})
+    max: 3,
+    idleTimeoutMillis: 30000,
+    connectionTimeoutMillis: 5000,
+});
+
+const adapter = new PrismaPg(pool);
 
 /**
  * prisma
@@ -29,12 +35,9 @@ const prisma = new PrismaClient({
 
     adapter,
 
-    log: [
-        "query",
-        "info",
-        "warn",
-        "error"
-    ]
+    log: process.env.NODE_ENV === "production"
+        ? ["warn", "error"]
+        : ["query", "info", "warn", "error"]
 
 });
 

@@ -8,12 +8,17 @@ import {
 
 
 
+const POLL_CRON_SCHEDULE =
+    process.env.POLL_CRON_SCHEDULE || "*/15 * * * *";
+
+
+
 /**
  * start_gmail_worker()
  * --------------------
  * Registers the Gmail IMAP polling cron job.
- * Runs every 10 minutes and processes unread XM
- * affiliate emails, extracting account IDs.
+ * Runs every POLL_CRON_SCHEDULE (default: 15 minutes).
+ * Set DISABLE_EMAIL_POLLING=true to skip this worker entirely.
  *
  * Parameters:
  * -----------
@@ -26,44 +31,65 @@ import {
 
 export const start_gmail_worker = () => {
 
-    logger.info("Starting Gmail worker.");
+    if (process.env.DISABLE_EMAIL_POLLING === "true") {
+
+        logger.info("Gmail worker disabled via DISABLE_EMAIL_POLLING.");
+
+        return;
+
+    }
+
+    logger.info(
+        `Starting Gmail worker (schedule: ${POLL_CRON_SCHEDULE}).`
+    );
 
     /**
-     * safe_poll()
-     * -----------
-     * Wraps process_xm_emails() in a top-level try/catch so an
-     * ECONNRESET or any other uncaught rejection from the IMAP
-     * layer never propagates to the cron scheduler and crashes
-     * the process.
+     * Tracks consecutive poll failures. After each failure the
+     * worker skips an increasing number of ticks before retrying
+     * (1 skip → 2 skips → 4 skips, capped at 4).
+     * Resets to 0 on any successful poll.
      */
 
+    let consecutive_failures = 0;
+    let skips_remaining = 0;
+
     const safe_poll = async () => {
+
+        if (skips_remaining > 0) {
+
+            skips_remaining--;
+
+            return;
+
+        }
 
         try {
 
             await process_xm_emails();
 
+            consecutive_failures = 0;
+
         }
 
         catch (err) {
 
+            consecutive_failures++;
+
+            skips_remaining = Math.min(
+                Math.pow(2, consecutive_failures - 1),
+                4
+            );
+
             logger.error(
-
-                `Gmail worker uncaught error: ${err.message}`
-
+                `Gmail worker error (backoff: skip ${skips_remaining} poll(s)): ${err.message}`
             );
 
         }
 
     };
 
-    /**
-     * Execute immediately on startup so the
-     * first poll does not wait a full minute.
-     */
-
     safe_poll();
 
-    cron.schedule("*/10 * * * *", safe_poll);
+    cron.schedule(POLL_CRON_SCHEDULE, safe_poll);
 
 };

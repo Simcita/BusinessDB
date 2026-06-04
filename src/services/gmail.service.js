@@ -44,7 +44,9 @@ const create_imap_client = () => {
 
             pass: process.env.IMAP_PASS
 
-        }
+        },
+
+        logger: false
 
     });
 
