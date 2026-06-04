@@ -124,8 +124,7 @@ const process_single_job = async (job) => {
 
                 job.submission.email,
                 job.submission.name,
-                job.submission.xmAccountId,
-                whop_link
+                job.submission.xmAccountId
 
             );
 
