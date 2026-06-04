@@ -32,6 +32,8 @@ import global_error_handler from "./middleware/error.middleware.js";
 
 const app = express();
 
+app.set('trust proxy', 1);
+
 
 
 /**

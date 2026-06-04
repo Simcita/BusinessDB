@@ -44,16 +44,17 @@ import {
  *   1. Account already has a PENDING or VERIFIED submission
  *      → 409  "XM account already submitted or verified."
  *
- *   2. Account ID not found in XmApprovedAccount
- *      → 404  { type: "ACCOUNT_NOT_FOUND", instructions, affiliateLink }
- *             The public webapp uses this to show a toast with
- *             instructions on how to sign up through the
- *             affiliate link to qualify for the discount.
+ *   2. Account ID not yet in XmApprovedAccount
+ *      → 202  { type: "PENDING_SIGNUP", affiliateCode, affiliateLink }
+ *             Submission is saved as PENDING. The verification worker will
+ *             auto-confirm it once the affiliate email arrives from XM.
+ *             The response includes the referral code and link so the user
+ *             knows how to open an account under the correct IB partner.
  *
  *   3. Account found in approved list
  *      → 202  Pending submission created. The verification
  *             cron worker will confirm and trigger fulfillment
- *             (email + WhatsApp) within the next minute.
+ *             (email + WhatsApp) within the next polling cycle.
  *
  * Parameters:
  * -----------
@@ -132,69 +133,30 @@ export const verify_xm_submission = async (
 
 
         /**
-         * Check whether the account exists in the approved list.
-         * Accounts arrive via the Gmail IMAP worker — if the
-         * affiliate email has not been processed yet, this check
-         * will return false. Users who have not signed up through
-         * the correct affiliate link will always fail here.
-         */
-
-        const account_exists =
-
-            await verify_xm_account(
-
-                validated_data.xm_account_id
-
-            );
-
-
-
-        if (!account_exists) {
-
-            return response.status(404).json({
-
-                success: false,
-
-                type: "ACCOUNT_NOT_FOUND",
-
-                message: "We don't have your XM account on file.",
-
-                instructions:
-                    "To qualify for the discount, you must open your XM account through our affiliate link. " +
-                    "Sign up using the link below, then return here once your account is active.",
-
-                affiliateLink: process.env.AFFILIATE_LINK
-
-            });
-
-        }
-
-
-
-        /**
-         * Account exists. Create a PENDING submission.
-         * The verification cron worker will match this against
-         * XmApprovedAccount and trigger fulfillment jobs within
-         * the next polling cycle (≤ 1 minute).
+         * Always save the submission as PENDING regardless of
+         * whether the account is in the approved list yet.
+         * If the account is not approved yet, the verification
+         * worker will auto-match it once the affiliate email
+         * arrives — no re-submission needed.
          */
 
         const submission =
 
             await create_pending_submission({
 
-                name:              validated_data.name,
+                name:               validated_data.name,
 
-                surname:           validated_data.surname,
+                surname:            validated_data.surname,
 
-                email:             validated_data.email,
+                email:              validated_data.email,
 
-                phone:             formatted_phone,
+                phone:              formatted_phone,
 
                 submittedAccountId: validated_data.xm_account_id,
 
-                ipAddress:         request.ip,
+                ipAddress:          request.ip,
 
-                campaignId:        validated_data.campaign_id ?? null
+                campaignId:         validated_data.campaign_id ?? null
 
             });
 
@@ -211,6 +173,59 @@ export const verify_xm_submission = async (
         );
 
 
+
+        /**
+         * Check whether the account exists in the approved list.
+         * Accounts arrive via the Gmail IMAP worker.
+         */
+
+        const account_exists =
+
+            await verify_xm_account(
+
+                validated_data.xm_account_id
+
+            );
+
+
+
+        /**
+         * Account not yet on file — return instructions so the
+         * user knows to open an XM account under the IB code.
+         * The submission is already saved and will be auto-verified
+         * when the affiliate email is processed.
+         */
+
+        if (!account_exists) {
+
+            return response.status(202).json({
+
+                success: true,
+
+                type: "PENDING_SIGNUP",
+
+                message:
+                    "Your details have been saved. To complete verification, " +
+                    "open a new XM account using referral code " +
+                    (process.env.AFFILIATE_CODE || "BANDISHARES05") +
+                    ". Once your account is active, we'll confirm and reach out automatically.",
+
+                affiliateCode: process.env.AFFILIATE_CODE || "BANDISHARES05",
+
+                affiliateLink: process.env.AFFILIATE_LINK || null,
+
+                submissionId: submission.id
+
+            });
+
+        }
+
+
+
+        /**
+         * Account found — submission will be matched by the
+         * verification worker within the next polling cycle.
+         */
 
         return response.status(202).json({
 
