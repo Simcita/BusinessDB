@@ -193,7 +193,7 @@ export const admin_login = async (
 
                 message: "Validation failed.",
 
-                errors: error.errors
+                errors: error.issues
 
             });
 

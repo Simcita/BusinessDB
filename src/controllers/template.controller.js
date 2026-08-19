@@ -188,7 +188,7 @@ export const add_template = async (
 
                 message: "Validation failed.",
 
-                errors: error.errors
+                errors: error.issues
 
             });
 
@@ -282,7 +282,7 @@ export const edit_template = async (
 
                 message: "Validation failed.",
 
-                errors: error.errors
+                errors: error.issues
 
             });
 

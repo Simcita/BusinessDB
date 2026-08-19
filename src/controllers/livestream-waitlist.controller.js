@@ -81,7 +81,7 @@ export const signup_for_waitlist = async (
 
                 message: "Validation failed.",
 
-                errors: error.errors
+                errors: error.issues
 
             });
 
@@ -161,7 +161,7 @@ export const list_waitlist_entries = async (
 
                 message: "Invalid query parameters.",
 
-                errors: error.errors
+                errors: error.issues
 
             });
 
@@ -238,7 +238,7 @@ export const send_waitlist_links = async (
 
                 message: "Validation failed.",
 
-                errors: error.errors
+                errors: error.issues
 
             });
 
@@ -319,7 +319,7 @@ export const send_single_waitlist_link = async (
 
                 message: "Validation failed.",
 
-                errors: error.errors
+                errors: error.issues
 
             });
 
@@ -396,7 +396,7 @@ export const add_waitlist_entry = async (
 
                 message: "Validation failed.",
 
-                errors: error.errors
+                errors: error.issues
 
             });
 

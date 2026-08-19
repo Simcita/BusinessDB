@@ -145,7 +145,7 @@ export const get_submissions = async (
 
                 message: "Invalid query parameters.",
 
-                errors: error.errors
+                errors: error.issues
 
             });
 
@@ -228,7 +228,7 @@ export const get_jobs = async (
 
                 message: "Invalid query parameters.",
 
-                errors: error.errors
+                errors: error.issues
 
             });
 
@@ -367,7 +367,7 @@ export const get_parser_logs = async (
 
                 message: "Invalid query parameters.",
 
-                errors: error.errors
+                errors: error.issues
 
             });
 
@@ -447,7 +447,7 @@ export const get_approved_accounts = async (
 
                 message: "Invalid query parameters.",
 
-                errors: error.errors
+                errors: error.issues
 
             });
 
@@ -528,7 +528,7 @@ export const get_audit_logs = async (
 
                 message: "Invalid query parameters.",
 
-                errors: error.errors
+                errors: error.issues
 
             });
 
@@ -606,7 +606,7 @@ export const get_dead_letter_jobs = async (
 
                 message: "Invalid query parameters.",
 
-                errors: error.errors
+                errors: error.issues
 
             });
 
@@ -773,7 +773,7 @@ export const add_xm_account = async (
 
                 message: "Validation failed.",
 
-                errors: error.errors
+                errors: error.issues
 
             });
 
@@ -868,7 +868,7 @@ export const edit_xm_account = async (
 
                 message: "Validation failed.",
 
-                errors: error.errors
+                errors: error.issues
 
             });
 

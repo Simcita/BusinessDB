@@ -76,7 +76,7 @@ export const create_user = async (request, response) => {
 
                 message: "Validation failed.",
 
-                errors: error.errors
+                errors: error.issues
 
             });
 

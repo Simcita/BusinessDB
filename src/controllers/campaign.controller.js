@@ -189,7 +189,7 @@ export const add_campaign = async (
 
                 message: "Validation failed.",
 
-                errors: error.errors
+                errors: error.issues
 
             });
 
@@ -283,7 +283,7 @@ export const edit_campaign = async (
 
                 message: "Validation failed.",
 
-                errors: error.errors
+                errors: error.issues
 
             });
 
