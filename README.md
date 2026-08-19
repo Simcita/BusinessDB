@@ -137,8 +137,8 @@ src/
     admin.validators.js              # Zod schemas for all admin endpoints
 
   workers/
-    fulfillment.worker.js            # Cron: every minute
-    gmail.worker.js                  # Cron: every minute
+    fulfillment.worker.js            # Cron: every 15 min (POLL_CRON_SCHEDULE, disable: DISABLE_JOB_PROCESSING)
+    gmail.worker.js                  # Cron: every 15 min (POLL_CRON_SCHEDULE, disable: DISABLE_EMAIL_POLLING)
     metrics.worker.js                # Cron: every 15 minutes
 
   app.js                             # Express app — middleware stack and route mounting
@@ -151,7 +151,7 @@ src/
 
 ### Prerequisites
 
-- Node.js 18+
+- Node.js ≥ 22.12.0 (required by Prisma v7 and modern ESM package compatibility)
 - Supabase project (PostgreSQL)
 - Resend account + verified sender domain
 - Meta WhatsApp Business account *(optional — leave tokens blank to skip WhatsApp delivery)*
@@ -200,6 +200,29 @@ FRONTEND_URL=https://yourdomain.com
 # ─── Default Whop community link ──────────────────────────
 # Overridden per campaign — this is the fallback only
 WHOP_LINK=https://whop.com/your-link
+
+# ─── Supabase direct connection (for migrations) ──────────
+# Use the direct (non-pooled) connection string for Prisma migrations
+DIRECT_URL=postgresql://postgres.<ref>:<password>@db.<ref>.supabase.co:5432/postgres
+
+# ─── Whop product links (sent in welcome email) ───────────
+WHOP_BOOTCAMP_LINK=https://whop.com/your-bootcamp
+WHOP_DISCUSSION_LINK=https://whop.com/your-discussions
+
+# ─── Affiliate config ─────────────────────────────────────
+AFFILIATE_CODE=your_affiliate_code
+AFFILIATE_LINK=https://partners.etoro.com/your_link
+
+# ─── Community video (sent in welcome email) ──────────────
+VIDEO_LINK=https://youtu.be/your_video_id
+
+# ─── Worker toggles (set to "true" to disable) ────────────
+DISABLE_EMAIL_POLLING=false
+DISABLE_JOB_PROCESSING=false
+
+# ─── Cron schedule override (optional) ────────────────────
+# Default: */15 * * * * (every 15 minutes)
+POLL_CRON_SCHEDULE=*/15 * * * *
 ```
 
 ### 3. Apply migrations
@@ -261,6 +284,15 @@ npm start       # Production
 | `WHATSAPP_TEMPLATE_NAME` | No | Approved Meta template name. Default `xm_verification_success` |
 | `FRONTEND_URL` | No | Dashboard origin for CORS allow-list |
 | `WHOP_LINK` | No | Fallback Whop community link (overridden per campaign) |
+| `DIRECT_URL` | No | Direct (non-pooled) Supabase URL — used by `prisma migrate deploy` |
+| `WHOP_BOOTCAMP_LINK` | No | Whop bootcamp product link included in welcome email |
+| `WHOP_DISCUSSION_LINK` | No | Whop discussion-only product link included in welcome email |
+| `AFFILIATE_CODE` | No | Affiliate/referral code returned on account-not-found responses |
+| `AFFILIATE_LINK` | No | Affiliate sign-up URL included in not-found emails |
+| `VIDEO_LINK` | No | YouTube video URL embedded in the welcome email |
+| `DISABLE_EMAIL_POLLING` | No | Set `true` to disable the Gmail worker without redeploying |
+| `DISABLE_JOB_PROCESSING` | No | Set `true` to disable the verification + fulfillment workers |
+| `POLL_CRON_SCHEDULE` | No | Cron expression for all workers. Default `*/15 * * * *` |
 
 ---
 
@@ -301,7 +333,11 @@ npm start       # Production
 { "success": true, "message": "XM account verified.", "submission": { ... } }
 ```
 
-**Not found (404):** Account ID not in approved accounts list.
+**Not found (404):** Account ID not in approved accounts list. Response includes `affiliateCode` field pointing to the XM sign-up affiliate link.
+```json
+{ "success": false, "message": "Account not found.", "affiliateCode": "...", "affiliateLink": "..." }
+```
+
 **Conflict (409):** Account ID already claimed by another submission.
 
 ---
@@ -437,9 +473,9 @@ Every endpoint returns one of these shapes:
 
 ## Background Workers
 
-### Gmail Worker — `* * * * *` (every minute)
+### Gmail Worker — `*/15 * * * *` (every 15 minutes, configurable via `POLL_CRON_SCHEDULE`)
 
-Polls the configured IMAP inbox for new affiliate notification emails.
+Polls the Gmail inbox for new affiliate notification emails. Disable without redeployment: `DISABLE_EMAIL_POLLING=true`.
 
 | Step | Action |
 |---|---|
@@ -451,9 +487,9 @@ Polls the configured IMAP inbox for new affiliate notification emails.
 | 6 | **Star (`\Flagged`) the email** — email stays unread in the inbox; the star prevents reprocessing |
 | 7 | Write a `parser_logs` entry (SUCCESS or FAILED) for every email processed |
 
-### Fulfillment Worker — `* * * * *` (every minute)
+### Fulfillment Worker — `*/15 * * * *` (every 15 minutes, configurable via `POLL_CRON_SCHEDULE`)
 
-Processes pending notification delivery jobs in batches of 10.
+Processes pending notification delivery jobs in batches of 10. Disable without redeployment: `DISABLE_JOB_PROCESSING=true`.
 
 | Step | Action |
 |---|---|
@@ -848,6 +884,30 @@ npx prisma migrate dev --name <migration_name>
 3. Adds `deletedAt TIMESTAMP NULL` (soft-delete) to `campaigns` and `notification_templates`.
 4. Adds `performedBy TEXT NULL` to `audit_logs`.
 5. Adds all 25 missing performance indexes listed in the [Indexes](#database--indexes) section above.
+
+---
+
+## Deployment — Railway
+
+This project ships a `railway.json` that configures Railway's build and start commands.
+
+```json
+{
+  "build": { "builder": "NIXPACKS" },
+  "deploy": {
+    "startCommand": "npm start",
+    "buildCommand": "npm run build"
+  }
+}
+```
+
+`npm run build` runs `prisma generate` to regenerate the Prisma client from the schema before the server starts. This is required because Railway clears the generated client between deploys.
+
+**Trust proxy** (`app.set('trust proxy', 1)`) is enabled globally in `src/app.js`. Without this, rate limiting breaks behind Railway's reverse proxy because all requests appear to originate from the same IP.
+
+**Migrations on Railway:**
+- Use `DIRECT_URL` (non-pooled Supabase connection) for `prisma migrate deploy` — the pooled `DATABASE_URL` does not support migration commands.
+- Run migrations manually via Railway's shell before/after a deploy, or wire them into the build step.
 
 ---
 

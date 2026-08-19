@@ -8,7 +8,11 @@ import {
     get_parser_logs,
     get_approved_accounts,
     get_audit_logs,
-    get_dead_letter_jobs
+    get_dead_letter_jobs,
+    get_metrics_history_handler,
+    get_submission_detail,
+    add_xm_account,
+    edit_xm_account
 } from "../controllers/admin.controller.js";
 
 import verify_admin_authentication
@@ -45,6 +49,13 @@ router.get(
 
 
 
+router.get(
+    "/metrics/history",
+    get_metrics_history_handler
+);
+
+
+
 /**
  * GET /admin/submissions
  * ----------------------
@@ -55,6 +66,13 @@ router.get(
 router.get(
     "/submissions",
     get_submissions
+);
+
+
+
+router.get(
+    "/submissions/:submission_id",
+    get_submission_detail
 );
 
 
@@ -125,6 +143,44 @@ router.get(
 router.get(
     "/accounts",
     get_approved_accounts
+);
+
+
+
+/**
+ * POST /admin/accounts
+ * ---------------------
+ * Manually adds an XM approved-account record.
+ * For rare edge cases only (e.g. parser missed an email) —
+ * NOT part of the normal signup flow. Requires ADMIN or
+ * SUPER_ADMIN role.
+ *
+ * There is deliberately no DELETE /admin/accounts/:id route.
+ * Submissions and audit logs reference these records, and
+ * deleting one would break that trail. This is a permanent
+ * constraint, not a "for now."
+ */
+
+router.post(
+    "/accounts",
+    authorize_roles(["ADMIN", "SUPER_ADMIN"]),
+    add_xm_account
+);
+
+
+
+/**
+ * PATCH /admin/accounts/:account_id
+ * -----------------------------------
+ * Edits accountId or metadata on an existing XM approved
+ * account — e.g. fixing a typo. Requires ADMIN or
+ * SUPER_ADMIN role.
+ */
+
+router.patch(
+    "/accounts/:account_id",
+    authorize_roles(["ADMIN", "SUPER_ADMIN"]),
+    edit_xm_account
 );
 
 

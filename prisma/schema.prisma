@@ -579,3 +579,52 @@ model AuditLog {
   @@map("audit_logs")
 
 }
+
+
+// ============================================================
+// ENUM: WaitlistStatus
+// ------------------------------------------------------------
+// Lifecycle states for a LivestreamWaitlistEntry.
+// PENDING — signed up, links not yet sent.
+// SENT    — bulk-send delivered successfully to this entry.
+// FAILED  — bulk-send failed for this entry; eligible for retry
+//           on the next send.
+// ============================================================
+
+enum WaitlistStatus {
+  PENDING
+  SENT
+  FAILED
+}
+
+
+// ============================================================
+// MODEL: LivestreamWaitlistEntry
+// ------------------------------------------------------------
+// Standalone livestream-seminar waitlist. Fully separate from
+// UserSubmission / FulfillmentJob — the public signup endpoint
+// performs a synchronous XmApprovedAccount lookup (no queue),
+// and the bulk-send endpoint delivers Discord/Telegram invite
+// links via the Resend batch API. Not touched by any existing
+// worker.
+//
+// Indexes:
+//   status — bulk-send targeting (PENDING/FAILED) and the
+//            admin list page's status filter
+// ============================================================
+
+model LivestreamWaitlistEntry {
+
+  id          String         @id @default(uuid())
+  name        String
+  surname     String
+  email       String         @unique
+  xmAccountId String
+  status      WaitlistStatus @default(PENDING)
+  joinedAt    DateTime       @default(now())
+  sentAt      DateTime?
+
+  @@index([status])
+  @@map("livestream_waitlist_entries")
+
+}

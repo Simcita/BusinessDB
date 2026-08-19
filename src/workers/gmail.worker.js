@@ -9,7 +9,7 @@ import {
 
 
 const POLL_CRON_SCHEDULE =
-    process.env.POLL_CRON_SCHEDULE || "*/15 * * * *";
+    process.env.GMAIL_POLL_CRON || process.env.POLL_CRON_SCHEDULE || "*/15 * * * *";
 
 
 
@@ -87,8 +87,6 @@ export const start_gmail_worker = () => {
         }
 
     };
-
-    safe_poll();
 
     cron.schedule(POLL_CRON_SCHEDULE, safe_poll);
 

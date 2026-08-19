@@ -6,3 +6,6 @@ node_modules
 
 # Local test scripts
 scripts/
+
+# Playwright MCP test output (screenshots, console logs from manual testing)
+.playwright-mcp/

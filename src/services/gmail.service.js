@@ -182,9 +182,83 @@ const save_xm_account = async (
 
 
 /**
+ * get_email_text()
+ * ----------------
+ * Returns the best plain-text representation of a parsed email.
+ * Prefers the explicit text/plain part; falls back to stripping
+ * HTML tags from the text/html part (XM emails are HTML-only).
+ */
+
+const get_email_text = (parsed_email) => {
+
+    if (parsed_email.text) return parsed_email.text;
+
+    const raw_html = parsed_email.html || "";
+
+    return raw_html
+        .replace(/(<([^>]+)>)/gi, " ")
+        .replace(/&nbsp;/gi, " ")
+        .replace(/&amp;/gi, "&")
+        .replace(/\s+/g, " ")
+        .trim();
+
+};
+
+
+
+/**
+ * extract_and_save()
+ * ------------------
+ * Shared extraction + persistence logic used for both
+ * direct emails and .eml attachments.
+ */
+
+const extract_and_save = async (email_text, email_subject, sender_email) => {
+
+    const xm_account_id = extract_xm_account_id(email_text);
+
+    if (!xm_account_id) {
+
+        logger.warn(`Failed to extract XM account ID from: ${email_subject}`);
+
+        await save_parser_log({
+            emailSubject: email_subject,
+            senderEmail: sender_email,
+            parsingStatus: "FAILED",
+            failureReason: "XM account ID not found"
+        });
+
+        return;
+
+    }
+
+    await save_xm_account(
+        xm_account_id,
+        email_subject,
+        sender_email,
+        email_text.slice(0, 500)
+    );
+
+    await save_parser_log({
+        emailSubject: email_subject,
+        senderEmail: sender_email,
+        parsingStatus: "SUCCESS",
+        extractedAccountId: xm_account_id
+    });
+
+    logger.info(`Processed XM account: ${xm_account_id}`);
+
+};
+
+
+
+/**
  * process_email_message()
  * -----------------------
  * Processes individual email message.
+ * If the email contains .eml attachments, each attachment
+ * is parsed and processed independently (bulk upload flow).
+ * Otherwise the email body itself is parsed directly.
  *
  * Parameters:
  * -----------
@@ -226,127 +300,51 @@ const process_email_message = async (
          * Parse email content from the readable stream.
          */
 
-        const parsed_email = await simpleParser(
+        const parsed_email = await simpleParser(content);
 
-            content
 
+
+        /**
+         * Check for .eml attachments (bulk upload flow).
+         * Users can forward many XM registration emails as
+         * .eml attachments in a single email to the inbox.
+         */
+
+        const eml_attachments = (parsed_email.attachments || []).filter(a =>
+            a.filename?.toLowerCase().endsWith(".eml") ||
+            a.contentType === "message/rfc822"
         );
 
+        if (eml_attachments.length > 0) {
 
+            logger.info(`Found ${eml_attachments.length} .eml attachment(s) — processing each.`);
 
-        const email_subject =
+            for (const attachment of eml_attachments) {
 
-            parsed_email.subject || "";
+                const inner = await simpleParser(attachment.content);
+                const text    = get_email_text(inner);
+                const subject = inner.subject || parsed_email.subject || "";
+                const sender  = inner.from?.text || "";
 
+                await extract_and_save(text, subject, sender);
 
+            }
 
-        const sender_email =
+        } else {
 
-            parsed_email.from?.text || "";
+            const text    = get_email_text(parsed_email);
+            const subject = parsed_email.subject || "";
+            const sender  = parsed_email.from?.text || "";
 
-
-
-        const email_text =
-
-            parsed_email.text || "";
-
-
-
-        /**
-         * Extract XM account ID.
-         */
-
-        const xm_account_id =
-
-            extract_xm_account_id(email_text);
-
-
-
-        /**
-         * Handle failed extraction.
-         */
-
-        if (!xm_account_id) {
-
-            logger.warn(
-
-                `Failed to extract XM account ID.`
-
-            );
-
-
-
-            await save_parser_log({
-
-                emailSubject: email_subject,
-
-                senderEmail: sender_email,
-
-                parsingStatus: "FAILED",
-
-                failureReason: "XM account ID not found"
-
-            });
-
-
-
-            return;
+            await extract_and_save(text, subject, sender);
 
         }
-
-
-
-        /**
-         * Save XM account.
-         */
-
-        await save_xm_account(
-
-            xm_account_id,
-
-            email_subject,
-
-            sender_email,
-
-            email_text.slice(0, 500)
-
-        );
-
-
-
-        /**
-         * Save successful parser log.
-         */
-
-        await save_parser_log({
-
-            emailSubject: email_subject,
-
-            senderEmail: sender_email,
-
-            parsingStatus: "SUCCESS",
-
-            extractedAccountId: xm_account_id
-
-        });
-
-
-
-        logger.info(
-
-            `Processed XM account: ${xm_account_id}`
-
-        );
 
     }
 
     catch (error) {
 
-        logger.error(
-
-            error.message
-
-        );
+        logger.error(error.message);
 
     }
 

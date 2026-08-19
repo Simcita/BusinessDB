@@ -169,7 +169,8 @@ export const get_paginated_jobs = async ({
     page = 1,
     limit = 20,
     status = null,
-    channel = null
+    channel = null,
+    search = null
 
 }) => {
 
@@ -188,6 +189,20 @@ export const get_paginated_jobs = async ({
     if (channel) {
 
         where_clause.notificationChannel = channel;
+
+    }
+
+
+
+    if (search) {
+
+        where_clause.submission = {
+            OR: [
+                { email: { contains: search, mode: "insensitive" } },
+                { xmAccountId: { contains: search, mode: "insensitive" } },
+                { name: { contains: search, mode: "insensitive" } }
+            ]
+        };
 
     }
 
@@ -257,13 +272,32 @@ export const get_paginated_jobs = async ({
 export const get_paginated_parser_logs = async ({
 
     page = 1,
-    limit = 20
+    limit = 20,
+    search = null
 
 }) => {
+
+    const where_clause = {};
+
+
+
+    if (search) {
+
+        where_clause.OR = [
+            { emailSubject: { contains: search, mode: "insensitive" } },
+            { senderEmail: { contains: search, mode: "insensitive" } },
+            { extractedAccountId: { contains: search, mode: "insensitive" } }
+        ];
+
+    }
+
+
 
     const [parser_logs, total] = await Promise.all([
 
         prisma.parserLog.findMany({
+
+            where: where_clause,
 
             orderBy: {
                 createdAt: "desc"
@@ -275,7 +309,7 @@ export const get_paginated_parser_logs = async ({
 
         }),
 
-        prisma.parserLog.count()
+        prisma.parserLog.count({ where: where_clause })
 
     ]);
 
@@ -312,13 +346,32 @@ export const get_paginated_parser_logs = async ({
 export const get_paginated_approved_accounts = async ({
 
     page = 1,
-    limit = 20
+    limit = 20,
+    search = null
 
 }) => {
+
+    const where_clause = {};
+
+
+
+    if (search) {
+
+        where_clause.OR = [
+            { accountId: { contains: search, mode: "insensitive" } },
+            { senderEmail: { contains: search, mode: "insensitive" } },
+            { emailSubject: { contains: search, mode: "insensitive" } }
+        ];
+
+    }
+
+
 
     const [accounts, total] = await Promise.all([
 
         prisma.xmApprovedAccount.findMany({
+
+            where: where_clause,
 
             orderBy: {
                 fetchedAt: "desc"
@@ -338,7 +391,7 @@ export const get_paginated_approved_accounts = async ({
 
         }),
 
-        prisma.xmApprovedAccount.count()
+        prisma.xmApprovedAccount.count({ where: where_clause })
 
     ]);
 
@@ -377,7 +430,8 @@ export const get_paginated_audit_logs = async ({
 
     page = 1,
     limit = 20,
-    event_type = null
+    event_type = null,
+    search = null
 
 }) => {
 
@@ -388,6 +442,18 @@ export const get_paginated_audit_logs = async ({
     if (event_type) {
 
         where_clause.eventType = event_type;
+
+    }
+
+
+
+    if (search) {
+
+        where_clause.OR = [
+            { eventDescription: { contains: search, mode: "insensitive" } },
+            { performedBy: { contains: search, mode: "insensitive" } },
+            { entityId: { contains: search, mode: "insensitive" } }
+        ];
 
     }
 
@@ -544,5 +610,188 @@ export const get_failed_jobs = async ({
         meta: build_pagination_meta(total, page, limit)
 
     };
+
+};
+
+
+
+export const get_metrics_history = async ({ limit = 24 }) => {
+
+    const metrics = await prisma.systemMetric.findMany({
+
+        orderBy: { createdAt: "desc" },
+
+        take: limit
+
+    });
+
+    return metrics.reverse();
+
+};
+
+
+
+export const get_submission_by_id = async (submission_id) => {
+
+    const submission = await prisma.userSubmission.findUnique({
+
+        where: { id: submission_id },
+
+        include: {
+
+            xmApprovedAccount: true,
+
+            campaign: true,
+
+            fulfillmentJobs: {
+                orderBy: { createdAt: "desc" }
+            },
+
+            fulfillmentLogs: {
+                orderBy: { createdAt: "desc" }
+            }
+
+        }
+
+    });
+
+    return submission;
+
+};
+
+
+
+/**
+ * get_xm_approved_account_by_id()
+ * --------------------------------
+ * Returns a single XM approved account by its UUID.
+ *
+ * Parameters:
+ * -----------
+ * account_id : string
+ *
+ * Returns:
+ * --------
+ * Promise<object | null>
+ */
+
+export const get_xm_approved_account_by_id = async (account_id) => {
+
+    return prisma.xmApprovedAccount.findUnique({
+
+        where: { id: account_id }
+
+    });
+
+};
+
+
+
+/**
+ * create_xm_approved_account()
+ * ------------------------------
+ * Manually creates an XM approved-account record, for rare
+ * edge cases where the Gmail parser missed an email. Not part
+ * of the normal signup flow.
+ *
+ * Parameters:
+ * -----------
+ * account_data : object  — accountId, emailSubject?, senderEmail?,
+ *                           rawEmailExcerpt?, parsedSuccessfully?
+ * admin_id     : string
+ *
+ * Returns:
+ * --------
+ * Promise<object>  — created XmApprovedAccount record
+ */
+
+export const create_xm_approved_account = async (account_data, admin_id) => {
+
+    const existing_account = await prisma.xmApprovedAccount.findUnique({
+
+        where: { accountId: account_data.accountId }
+
+    });
+
+    if (existing_account) {
+
+        const error = new Error(`XM account "${account_data.accountId}" already exists.`);
+        error.status = 409;
+        throw error;
+
+    }
+
+    const new_account = await prisma.xmApprovedAccount.create({
+
+        data: {
+
+            accountId: account_data.accountId,
+
+            emailSubject: account_data.emailSubject,
+
+            senderEmail: account_data.senderEmail,
+
+            rawEmailExcerpt: account_data.rawEmailExcerpt,
+
+            parsedSuccessfully: account_data.parsedSuccessfully ?? true
+
+        }
+
+    });
+
+    await create_audit_log(
+
+        "ACCOUNT_CREATED",
+
+        `Admin ${admin_id} manually added XM account "${new_account.accountId}".`,
+
+        new_account.id
+
+    );
+
+    return new_account;
+
+};
+
+
+
+/**
+ * update_xm_approved_account()
+ * -------------------------------
+ * Partially updates an XM approved-account record — e.g.
+ * fixing a typo in the account ID or captured metadata.
+ *
+ * Parameters:
+ * -----------
+ * account_id  : string
+ * update_data : object  — partial XmApprovedAccount fields
+ * admin_id    : string
+ *
+ * Returns:
+ * --------
+ * Promise<object>  — updated XmApprovedAccount record
+ */
+
+export const update_xm_approved_account = async (account_id, update_data, admin_id) => {
+
+    const updated_account = await prisma.xmApprovedAccount.update({
+
+        where: { id: account_id },
+
+        data: update_data
+
+    });
+
+    await create_audit_log(
+
+        "ACCOUNT_UPDATED",
+
+        `Admin ${admin_id} updated XM account "${updated_account.accountId}".`,
+
+        account_id
+
+    );
+
+    return updated_account;
 
 };

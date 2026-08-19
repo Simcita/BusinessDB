@@ -1,3 +1,7 @@
+import { z } from "zod";
+
+
+
 import {
 
     verify_xm_account,
@@ -12,7 +16,9 @@ import {
 
 import {
 
-    verify_xm_schema
+    verify_xm_schema,
+
+    check_account_schema
 
 } from "../utils/validation.js";
 
@@ -31,6 +37,16 @@ import {
     create_audit_log
 
 } from "../services/audit.service.js";
+
+
+
+import {
+
+    get_affiliate_info,
+
+    build_general_registration_prompt
+
+} from "../utils/affiliate.js";
 
 
 
@@ -198,6 +214,8 @@ export const verify_xm_submission = async (
 
         if (!account_exists) {
 
+            const affiliate_info = get_affiliate_info();
+
             return response.status(202).json({
 
                 success: true,
@@ -206,13 +224,12 @@ export const verify_xm_submission = async (
 
                 message:
                     "Your details have been saved. To complete verification, " +
-                    "open a new XM account using referral code " +
-                    (process.env.AFFILIATE_CODE || "BANDISHARES05") +
+                    build_general_registration_prompt() +
                     ". Once your account is active, we'll confirm and reach out automatically.",
 
-                affiliateCode: process.env.AFFILIATE_CODE || "BANDISHARES05",
+                affiliateCode: affiliate_info.general_code,
 
-                affiliateLink: process.env.AFFILIATE_LINK || null,
+                affiliateLink: affiliate_info.link,
 
                 submissionId: submission.id
 
@@ -242,6 +259,78 @@ export const verify_xm_submission = async (
     }
 
     catch (error) {
+
+        return response.status(500).json({
+
+            success: false,
+
+            message: error.message
+
+        });
+
+    }
+
+};
+
+
+
+/**
+ * check_account()
+ * ----------------
+ * Public "Door Check" endpoint. Answers only whether an MT
+ * account ID has been captured as approved — never returns
+ * emailSubject, senderEmail, rawEmailExcerpt, or any other
+ * field from XmApprovedAccount. No auth required.
+ *
+ * Parameters:
+ * -----------
+ * request  : Express Request Object
+ * response : Express Response Object
+ *
+ * Returns:
+ * --------
+ * JSON Response — { success: true, data: { found: boolean } }
+ */
+
+export const check_account = async (
+
+    request,
+    response
+
+) => {
+
+    try {
+
+        const validated_query =
+            check_account_schema.parse(request.query);
+
+        const found = await verify_xm_account(
+            validated_query.accountId
+        );
+
+        return response.status(200).json({
+
+            success: true,
+
+            data: { found }
+
+        });
+
+    }
+
+    catch (error) {
+
+        if (error instanceof z.ZodError) {
+
+            return response.status(400).json({
+
+                success: false,
+
+                message: "accountId query parameter is required."
+
+            });
+
+        }
 
         return response.status(500).json({
 

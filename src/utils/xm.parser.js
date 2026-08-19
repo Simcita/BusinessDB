@@ -31,6 +31,8 @@ export const extract_xm_account_id = (
 
         /account id[:\s]+(\d+)/i,
 
+        /MT5 ID[:\s]+(\d+)/i,
+
         /\b\d{7,10}\b/
 
     ];

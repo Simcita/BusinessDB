@@ -20,6 +20,10 @@ import campaign_routes from "./routes/campaign.routes.js";
 
 import template_routes from "./routes/template.routes.js";
 
+import admin_users_routes from "./routes/admin-users.routes.js";
+
+import livestream_waitlist_routes from "./routes/livestream-waitlist.routes.js";
+
 import global_error_handler from "./middleware/error.middleware.js";
 
 
@@ -122,6 +126,16 @@ app.use(
 app.use(
     "/admin",
     template_routes
+);
+
+app.use(
+    "/admin",
+    admin_users_routes
+);
+
+app.use(
+    "/admin",
+    livestream_waitlist_routes
 );
 
 

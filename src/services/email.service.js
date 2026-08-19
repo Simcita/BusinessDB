@@ -67,7 +67,7 @@ export const send_verification_email = async (
 
     try {
 
-        const response = await resend.emails.send({
+        const { data, error } = await resend.emails.send({
 
             from: process.env.EMAIL_FROM,
 
@@ -234,6 +234,26 @@ export const send_verification_email = async (
 
 
 
+        if (error) {
+
+            logger.error(
+
+                `Email delivery failed for ${recipient_email}: ${error.message}`
+
+            );
+
+            return {
+
+                success: false,
+
+                response: error.message
+
+            };
+
+        }
+
+
+
         logger.info(
 
             `Verification email sent to ${recipient_email}`
@@ -246,7 +266,7 @@ export const send_verification_email = async (
 
             success: true,
 
-            response
+            response: data
 
         };
 
@@ -261,6 +281,181 @@ export const send_verification_email = async (
         );
 
 
+
+        return {
+
+            success: false,
+
+            response: error.message
+
+        };
+
+    }
+
+};
+
+
+
+/**
+ * send_batch_emails()
+ * --------------------
+ * Sends up to 100 independent emails in a single Resend batch
+ * API call, using batchValidation:"permissive" so a single
+ * malformed recipient doesn't fail the whole call — Resend
+ * returns per-recipient errors (with their original array
+ * index) alongside the successfully-sent ids.
+ *
+ * Parameters:
+ * -----------
+ * emails : Array<{ to: string[], subject: string, html: string }>
+ *          — max 100 entries per call (Resend's batch limit)
+ *
+ * idempotency_key : string  — optional, prevents duplicate sends on retry
+ *                    (Resend's format: "batch-<event-type>/<id>")
+ *
+ * Returns:
+ * --------
+ * Promise<{ success: boolean, errors?: Array<{index,message}>, response?: string, error_name?: string }>
+ * error_name is Resend's own error code (e.g. "rate_limit_exceeded") — callers
+ * use this to decide whether a failure is worth retrying.
+ */
+
+export const send_batch_emails = async (emails, idempotency_key) => {
+
+    try {
+
+        const { data, error } = await resend.batch.send(emails, {
+
+            batchValidation: "permissive",
+
+            idempotencyKey: idempotency_key
+
+        });
+
+        if (error) {
+
+            logger.error(
+
+                `Batch email delivery failed: ${error.message}`
+
+            );
+
+            return {
+
+                success: false,
+
+                response: error.message,
+
+                error_name: error.name || null
+
+            };
+
+        }
+
+        return {
+
+            success: true,
+
+            errors: data.errors || []
+
+        };
+
+    }
+
+    catch (error) {
+
+        logger.error(
+
+            `Batch email delivery failed: ${error.message}`
+
+        );
+
+        return {
+
+            success: false,
+
+            response: error.message,
+
+            error_name: null
+
+        };
+
+    }
+
+};
+
+
+
+/**
+ * send_custom_email()
+ * ---------------------
+ * Sends a single ad-hoc email — used by the admin Email Center
+ * (manual sends) and anywhere a caller has already built the
+ * subject/HTML itself. Reuses the same module-level Resend
+ * client as send_verification_email.
+ *
+ * Parameters:
+ * -----------
+ * recipient_email : string
+ * subject         : string
+ * html            : string
+ *
+ * Returns:
+ * --------
+ * Promise<{ success: boolean, response: object | string }>
+ */
+
+export const send_custom_email = async (recipient_email, subject, html) => {
+
+    try {
+
+        const { data, error } = await resend.emails.send({
+
+            from: process.env.EMAIL_FROM,
+
+            to: recipient_email,
+
+            subject,
+
+            html
+
+        });
+
+        if (error) {
+
+            logger.error(
+
+                `Custom email delivery failed for ${recipient_email}: ${error.message}`
+
+            );
+
+            return {
+
+                success: false,
+
+                response: error.message
+
+            };
+
+        }
+
+        return {
+
+            success: true,
+
+            response: data
+
+        };
+
+    }
+
+    catch (error) {
+
+        logger.error(
+
+            `Custom email delivery failed for ${recipient_email}: ${error.message}`
+
+        );
 
         return {
 
