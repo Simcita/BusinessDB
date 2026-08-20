@@ -254,10 +254,29 @@ export const get_paginated_waitlist_entries = async ({
 
 
 /**
+ * escape_html()
+ * -------------
+ * Escapes HTML special characters. Needed because `render_body`'s
+ * output is used directly as an email's `html` field — without this,
+ * a stray "&"/"<" in the admin's own text breaks rendering, and
+ * `entry.name` (sourced from the *public* signup form) could inject
+ * markup into every recipient's email on the next bulk send.
+ */
+
+const escape_html = (text) => text
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+
+/**
  * render_body()
  * -------------
- * Plain {{name}} string replace — nothing fancier, matching
- * the "two form fields sent fresh each time" requirement.
+ * {{name}} substitution, then HTML-escape the result and convert
+ * line breaks to <br> — the admin types plain text with blank lines
+ * between paragraphs, but HTML collapses raw whitespace/newlines, so
+ * without this the email arrives as one unbroken paragraph.
  *
  * Parameters:
  * -----------
@@ -269,7 +288,9 @@ export const get_paginated_waitlist_entries = async ({
  * string
  */
 
-const render_body = (body, name) => body.replaceAll("{{name}}", name);
+const render_body = (body, name) => escape_html(
+    body.replaceAll("{{name}}", name)
+).replace(/\r\n|\r|\n/g, "<br>");
 
 
 
