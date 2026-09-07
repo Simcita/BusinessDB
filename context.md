@@ -209,3 +209,73 @@ list), `/jobs` (queue + inline retry) + `/jobs/failed` (dead-letter), `/campaign
 with a mangled literal-path name (colons/backslashes mapped to Unicode Private Use Area
 codepoints) — leftover from some earlier tool run gone wrong. Confirmed empty and harmless; not
 worth cleaning up unless it starts causing problems.
+
+---
+
+## 2026-09-07 — Gmail worker outage: root cause, fix, and a live-test incident
+
+**Reported symptom**: `gmail.worker.js` had been logging `Gmail worker error: Command failed` on
+every 15-minute tick since 2026-08-20, with no successful IMAP polls in between.
+
+**Root cause of the log message (confirmed from `imapflow` source,
+`node_modules/imapflow/lib/imap-flow.js`)**: `"Command failed"` is a hard-coded literal `imapflow`
+throws for *any* IMAP command (`LOGIN`, `SELECT`, `SEARCH`, `STORE`...) that gets a tagged
+`NO`/`BAD` server response. The real reason lives on `err.responseText`/`responseStatus`/
+`executedCommand`/`code`, which `gmail.service.js` was not logging — every failure looked
+identical. Not a code regression: `process_xm_emails()` (the connect/login/search function)
+hadn't changed since 2026-06-03; the three commits that landed on 2026-08-20 only touched
+email-body parsing, an unrelated Zod fix, and HTML-escaping elsewhere.
+
+**Fix shipped** (`gmail.service.js` + `gmail.worker.js`): added `describe_imap_error()` to surface
+the real IMAP failure reason in logs; added in-memory health state
+(`consecutive_failures`/`last_success_at`/`last_failure_at`); `process_xm_emails()` now **rethrows**
+on connect/login/search failure (previously swallowed, which made the worker's own backoff counter
+dead code — confirmed via grep it has exactly one caller, `safe_poll()`); added one-alert-per-outage
+emailing via the existing `send_custom_email()` + `create_audit_log()` helpers once failures hit
+`GMAIL_ALERT_THRESHOLD` (new optional env var, default 3, ~1h15m of sustained failure given the
+existing tick-skipping backoff); restored an immediate on-startup poll that commit `2729976`
+(2026-08-20) had silently dropped, so every restart no longer waits a full cron interval for the
+first check. New optional env vars: `GMAIL_ALERT_THRESHOLD`, `GMAIL_ALERT_EMAIL` (comma-separated,
+unset = alerting disabled). New diagnostic script: `scripts/test-gmail-connection.js`.
+
+**Live local test (same day) — the actual production IMAP credentials work.** Running the server
+locally against the real `.env` (real IMAP mailbox, real production Supabase DB — confirmed via
+this project's single-database setup, see §A above) showed `Connected to IMAP server.` and
+successfully drained the full backlog (596, then a remaining 354 unseen emails) within seconds per
+message. **This means the Aug 20 – Sep 7 outage's root cause is external** (mailbox credentials,
+account lock, or DNS on the `privateemail.com`-hosted mailbox around 2026-08-19/20) — not
+reproducible from this repo's code once valid credentials are in place. Verification/fulfillment
+workers were deliberately run with `DISABLE_JOB_PROCESSING=true` during this backlog drain to avoid
+firing real welcome emails/WhatsApp messages to customers as a side effect of clearing 18 days of
+backlogged approvals in one burst.
+
+**Incident discovered during that test: a production schema drift silently dropped data.**
+Between **12:28:06 and 12:33:40 UTC**, the `xm_approved_accounts.rawEmailExcerpt` column
+disappeared from the live Supabase database (confirmed via direct `information_schema` queries —
+only one schema, only one table by that name, column genuinely absent). Cause unknown — not
+triggered by anything run in this session, and there is no migration in this repo that drops it
+(only migration that has ever existed, `20260531193737_init`, *creates* it as `TEXT`, and
+`schema.prisma` still declares it). Effect: every `xmApprovedAccount` query started throwing
+`P2022 column does not exist`, which (a) broke the admin dashboard's accounts list entirely (its
+default `findMany()` selects all columns) and (b) caused ~300 of the in-flight backlog emails to be
+marked `\Flagged` (the "processed" marker) by `process_xm_emails()`'s per-message error handling
+*without* their data ever being saved — `\Flagged` is set unconditionally after
+`process_email_message()` regardless of whether it internally caught an error, so these would never
+have been retried by normal polling. **Also discovered while investigating this**: `TaskStop` on a
+background shell task on this Windows machine kills the shell wrapper but not the underlying
+`node.exe` child — a stray first server instance (with fulfillment/verification *not* disabled) kept
+running unnoticed for ~40 minutes and crossed three cron ticks; confirmed via direct query
+(`fulfillment_logs`, `audit_logs`) that zero real sends occurred (there were zero `PENDING`
+`UserSubmission` rows to match against), then force-killed via
+`Get-CimInstance Win32_Process | Stop-Process`.
+
+**Remediated same day**: column restored (`ALTER TABLE xm_approved_accounts ADD COLUMN IF NOT
+EXISTS "rawEmailExcerpt" TEXT;`, matching the original migration exactly); a recovery script
+(`scripts/recover-flagged-backlog.js`, kept in-repo — re-scans `{flagged:true, since:2026-08-20}`
+and re-saves via the same `accountId`-uniqueness dedup `save_xm_account()` already uses, so it's
+safe to re-run) recovered all 180 accounts that had been silently dropped (415 already-saved ones
+were correctly skipped as duplicates, 0 errors). `xm_approved_accounts` row count: 1861 → 2041.
+
+**Still open**: what actually dropped the column is unknown — worth watching for recurrence (a
+`prisma db push` from a schema missing this field, or a manual `ALTER TABLE`/Supabase Studio edit,
+are the most likely culprits given no migration file in this repo does it).

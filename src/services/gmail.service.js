@@ -15,6 +15,70 @@ import {
 
 
 /**
+ * Gmail worker health state (in-memory)
+ * ---------------------------------------
+ * Tracks consecutive IMAP poll failures and the last success/
+ * failure timestamps. Read by gmail.worker.js to drive tick-
+ * skipping backoff and failure alerting.
+ *
+ * Deliberately in-memory only, no DB persistence: this is a
+ * single background worker on a single Railway service that
+ * only restarts on deploy/crash (restartPolicyType: ON_FAILURE
+ * in railway.json), not on a healthy running process.
+ */
+
+let consecutive_failures = 0;
+let last_success_at = null;
+let last_failure_at = null;
+let last_error_summary = null;
+
+export const get_gmail_worker_health = () => ({
+    consecutive_failures,
+    last_success_at,
+    last_failure_at,
+    last_error_summary
+});
+
+
+
+/**
+ * describe_imap_error()
+ * ----------------------
+ * Builds a detailed, human-readable description of an error
+ * raised by imapflow. imapflow throws a generic "Command failed"
+ * Error for every IMAP NO/BAD response (wrong password, locked
+ * account, quota, throttling, etc.) and attaches the real reason
+ * to non-standard properties (responseText/responseStatus/
+ * executedCommand/code) instead of the message. This surfaces
+ * those properties so logs and alerts show the actual cause.
+ *
+ * Parameters:
+ * -----------
+ * error : Error
+ *
+ * Returns:
+ * --------
+ * string
+ */
+
+export const describe_imap_error = (error) => {
+
+    const details = [];
+
+    if (error.code) details.push(`code=${error.code}`);
+    if (error.responseStatus) details.push(`status=${error.responseStatus}`);
+    if (error.executedCommand) details.push(`command=${error.executedCommand}`);
+    if (error.responseText) details.push(`serverSaid="${error.responseText}"`);
+
+    return details.length > 0
+        ? `${error.message} (${details.join(", ")})`
+        : error.message;
+
+};
+
+
+
+/**
  * create_imap_client()
  * --------------------
  * Creates IMAPFlow client instance.
@@ -344,7 +408,7 @@ const process_email_message = async (
 
     catch (error) {
 
-        logger.error(error.message);
+        logger.error(`Failed to process email message: ${describe_imap_error(error)}`);
 
     }
 
@@ -384,7 +448,7 @@ export const process_xm_emails = async () => {
 
         logger.warn(
 
-            `IMAP connection error (handled): ${err.message}`
+            `IMAP connection error (handled): ${describe_imap_error(err)}`
 
         );
 
@@ -493,13 +557,23 @@ export const process_xm_emails = async () => {
 
         );
 
+        consecutive_failures = 0;
+
+        last_success_at = new Date();
+
     }
 
     catch (error) {
 
+        consecutive_failures += 1;
+
+        last_failure_at = new Date();
+
+        last_error_summary = describe_imap_error(error);
+
         logger.error(
 
-            `Gmail worker error: ${error.message}`
+            `Gmail worker error: ${last_error_summary}`
 
         );
 
@@ -510,6 +584,16 @@ export const process_xm_emails = async () => {
          */
 
         try { await client.logout(); } catch { /* already closed */ }
+
+        /**
+         * Rethrow so gmail.worker.js's backoff/alerting logic can
+         * react. process_xm_emails() has exactly one caller
+         * (safe_poll() in gmail.worker.js), which already has its
+         * own try/catch — without this rethrow that catch never
+         * fires and the backoff counter never increments.
+         */
+
+        throw error;
 
     }
 

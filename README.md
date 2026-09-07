@@ -293,6 +293,9 @@ npm start       # Production
 | `DISABLE_EMAIL_POLLING` | No | Set `true` to disable the Gmail worker without redeploying |
 | `DISABLE_JOB_PROCESSING` | No | Set `true` to disable the verification + fulfillment workers |
 | `POLL_CRON_SCHEDULE` | No | Cron expression for all workers. Default `*/15 * * * *` |
+| `GMAIL_POLL_CRON` | No | Cron override for the Gmail worker only, takes priority over `POLL_CRON_SCHEDULE` |
+| `GMAIL_ALERT_THRESHOLD` | No | Consecutive failed polls before an alert email fires. Default `3` |
+| `GMAIL_ALERT_EMAIL` | No | Comma-separated admin address(es) for Gmail worker failure alerts. Unset disables alerting |
 
 ---
 
